@@ -11,11 +11,18 @@
     border-bottom: 2px solid #cccccc;
     padding-bottom: 10px;
 }
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-top: 20px;
+}
 
 .logo {
-    width: 100px;
-    height: 100px;
-    margin: auto;
+    width: 50px;
+    height: auto;
+
 }
 
 .title-highlight {
