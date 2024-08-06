@@ -1,0 +1,11 @@
+.comprados-container {
+    text-align: center;
+    font-family: sans-serif;
+    color: black ;
+    padding: 20px; /* Añade un poco de espacio alrededor del contenido */
+    background-color: #f0f0f0; /* Añade un color de fondo suave para mejor contraste */
+    border: 1px solid #ccc; /* Añade un borde sutil para destacar el contenedor */
+    border-radius: 8px; /* Redondea las esquinas del borde */
+    max-width: 800px; /* Limita el ancho máximo del contenedor */
+    margin: 20px auto; /* Centra el contenedor en la página */
+}
