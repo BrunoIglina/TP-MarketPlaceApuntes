@@ -1,15 +1,25 @@
-
-<!-- header.component.html -->
 <div class="header-container">
     <a routerLink="/home"> 
         <img class="logo" src="assets/logo.png" alt="logo">
     </a>
     <h1 class="mainTitle" routerLink="/home">Los Apuntes de Bentann</h1>
-    <div class="dropdown">
-        <button>Mis Apuntes</button>
-        <div class="dropdown-content">
-            <a routerLink="/comprado">Comprados</a>
-            <a routerLink="/publicado">Publicados</a>
+    
+    <div class="dropdown-container">
+        <div class="dropdown">
+            <button class="dropdown-button">Mi Perfil</button>
+            <div class="dropdown-content miperfil-content">
+                <a routerLink="/profile">Editar Datos</a>
+                <a (click)="onLogoutClick()">Cerrar Sesión</a>
+            </div>
+        </div>
+  
+        <div class="dropdown">
+            <button class="dropdown-button">Mis Apuntes</button>
+            <div class="dropdown-content">
+                <a routerLink="/comprado">Comprados</a>
+                <a routerLink="/publicado">Publicados</a>
+            </div>
         </div>
     </div>
-</div>
+  </div>
+  
