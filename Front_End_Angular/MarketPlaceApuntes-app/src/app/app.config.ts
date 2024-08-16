@@ -4,6 +4,7 @@ import { routes } from './app.routes';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes) 

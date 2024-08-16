@@ -37,6 +37,9 @@ npm install @angular/forms
 ----
 angular/animations con comandos:
 npm install @angular/animations
+ ----
+ ng add @angular/material 
+ #Azure/blue; include and enable animations
 
 
 ## Login de prueba:

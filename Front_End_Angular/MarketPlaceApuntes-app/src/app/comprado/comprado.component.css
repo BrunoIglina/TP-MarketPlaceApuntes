@@ -1,11 +1,19 @@
-.comprados-container {
-    text-align: center;
-    font-family: sans-serif;
-    color: black ;
-    padding: 20px;
-    background-color: #f0f0f0; 
-    border: 1px solid #ccc; 
-    border-radius: 8px; 
-    max-width: 800px; 
-    margin: 20px auto; 
-}
+.comprado-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .comprado-card {
+    width: 300px;
+    margin-bottom: 20px;
+  }
+  
+  .pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    margin-top: 20px;
+  }
+  
