@@ -1,7 +1,7 @@
 :host {
     display: block;
     height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
 }
 
 .profile-container {
@@ -10,6 +10,7 @@
     align-items: center;
     min-height: calc(100vh - 80px); 
     padding: 20px;
+    background-color: #f0f0f0;
 }
 
 .profile-box {
@@ -42,12 +43,11 @@
 }
 
 .input-wrapper {
-    display: flex;
-    align-items: center;
+    position: relative;
 }
 
 .input-group input {
-    width: 100%;
+    width: calc(100% - 40px); /* Reduce el ancho para dejar espacio para el ícono */
     padding: 10px;
     border: 1px solid #cccccc;
     border-radius: 5px;
@@ -65,11 +65,24 @@
     outline: none;
 }
 
-.edit-icon {
-    width: 20px;
-    height: 20px;
-    margin-left: 10px;
+.toggle-password-icon {
+    position: absolute;
+    right: 10px; 
+    top: 50%;
+    transform: translateY(-50%);
     cursor: pointer;
+    width: 24px; /* Tamaño del ícono */
+    height: 24px;
+}
+
+.edit-icon {
+    position: absolute;
+    right: 40px; /* Ajusta esto según el espacio requerido */
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 24px; /* Tamaño del ícono */
+    height: 24px;
 }
 
 .button-group {
