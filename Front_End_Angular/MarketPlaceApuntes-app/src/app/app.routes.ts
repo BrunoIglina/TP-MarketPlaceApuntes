@@ -5,6 +5,7 @@ import { PublicadoComponent } from './publicado/publicado.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { RecoverPassComponent } from './recover-pass/recover-pass.component';
+import { FooterComponent } from './footer/footer.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'publicado', component: PublicadoComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'recoverPass', component: RecoverPassComponent}
+  { path: 'recoverPass', component: RecoverPassComponent},
+  { path: 'footer', component: FooterComponent}
 ];
