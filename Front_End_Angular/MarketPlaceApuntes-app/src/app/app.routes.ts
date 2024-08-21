@@ -6,6 +6,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { RecoverPassComponent } from './recover-pass/recover-pass.component';
 import { FooterComponent } from './footer/footer.component';
+import { EnterTokenComponent } from './enter-token/enter-token.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -14,6 +16,8 @@ export const routes: Routes = [
   { path: 'publicado', component: PublicadoComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'recoverPass', component: RecoverPassComponent},
+  { path: 'recover-pass', component: RecoverPassComponent},
+  { path: 'enter-token', component: EnterTokenComponent},
+  { path: 'reset-password', component: ResetPasswordComponent},
   { path: 'footer', component: FooterComponent}
 ];

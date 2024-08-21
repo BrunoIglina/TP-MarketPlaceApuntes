@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -21,8 +22,17 @@ export class LoginComponent
     if (this.loginData.legajo === '11111' && this.loginData.password === 'admin') {
       localStorage.setItem('authToken', 'someToken'); 
       this.router.navigate(['/home']); 
-    } else {
-      alert('Credenciales incorrectas');
+    } else 
+    {
+      Swal.fire
+      ({
+        title: 'CREDENCIALES DE ACCESO INCORRECTAS',
+        text: "Ingresa legajo y contraseña nuevamente",
+        icon: 'warning',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Aceptar',
+      })
     }
   }
 }

@@ -1,4 +1,4 @@
-.recover-pass-container {
+.enter-token-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,7 +10,7 @@
     background-position: center;
 }
 
-.recover-pass-box {
+.enter-token-box {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 40px;
     border-radius: 10px;
@@ -21,7 +21,7 @@
     backdrop-filter: blur(10px);
 }
 
-.recover-pass-box h2 {
+.enter-token-box h2 {
     margin-bottom: 20px;
     color: #333333;
 }
@@ -52,7 +52,7 @@
     outline: none;
 }
 
-.recover-pass-button {
+.enter-token-button {
     width: 100%;
     padding: 10px;
     background-color: #007bff;
@@ -64,7 +64,7 @@
     transition: background-color 0.3s ease;
 }
 
-.recover-pass-button:hover {
+.enter-token-button:hover {
     background-color: #0056b3;
 }
 
