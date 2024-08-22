@@ -42,3 +42,5 @@ npm install @angular/animations
 ## Login de prueba:
 Legajo= 11111
 Password= admin
+
+## Token Para codigo de verificacion = 1234
