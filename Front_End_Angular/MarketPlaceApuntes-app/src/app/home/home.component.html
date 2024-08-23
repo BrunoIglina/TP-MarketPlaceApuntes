@@ -1,5 +1,5 @@
 <div class="home-container">
-  <div class="sidebar">
+  <div class="sidebar" *ngIf="!selectedNote">
     <div *ngFor="let year of years">
       <h2 [class.expanded]="expandedYear === year" (click)="toggleYear(year)">
         Año {{ year }}
@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <div class="content">
+  <div class="content" *ngIf="!selectedNote">
     <div *ngIf="selectedSubject">
       <h3>Apuntes para {{ selectedSubject.name }}</h3>
       <div *ngFor="let note of paginatedNotes" class="note">
@@ -21,6 +21,7 @@
           <h4>{{ note.title }}</h4>
           <p>{{ note.description }}</p>
           <p><strong>Precio: $</strong> {{ note.price }}</p>
+          <button (click)="selectNote(note)">Ver Detalles</button>
         </div>
       </div>
 
@@ -31,4 +32,6 @@
       </div>
     </div>
   </div>
+
+  <app-note-detail *ngIf="selectedNote" [note]="selectedNote" (back)="goBack()"></app-note-detail>
 </div>

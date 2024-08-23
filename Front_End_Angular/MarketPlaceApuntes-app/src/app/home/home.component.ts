@@ -1,21 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { NoteDetailComponent } from '../note-detail/note-detail.component';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [CommonModule, FormsModule, RouterModule]
+  imports: [CommonModule, FormsModule, RouterModule, NoteDetailComponent]
 })
 export class HomeComponent implements OnInit {
   searchTerm: string = '';
   currentPage: number = 1;
   itemsPerPage: number = 5;
-  selectedSubject: any;
+  selectedSubject: any = null;
+  selectedNote: any | null = null; 
   expandedYear: number | null = null;
+  previousScrollPosition: number = 0;
 
   years: number[] = [1, 2, 3, 4, 5]; 
   subjects: any[] = [
@@ -54,8 +57,18 @@ export class HomeComponent implements OnInit {
   ];
   paginatedNotes: any[] = [];
 
+  constructor(private route: ActivatedRoute, private router: Router) {}
+
   ngOnInit() {
-    this.updatePagination();
+    this.route.queryParams.subscribe(params => {
+      if (params['reset'] === 'true') {
+        this.resetHome();
+        // Use navigate to ensure HomeComponent is refreshed
+        this.router.navigate(['/home'], { queryParams: { reset: null } });
+      } else {
+        this.updatePagination();
+      }
+    });
   }
 
   toggleYear(year: number) {
@@ -68,6 +81,21 @@ export class HomeComponent implements OnInit {
 
   selectSubject(subject: any) {
     this.selectedSubject = subject;
+    this.currentPage = 1;
+    this.updatePagination();
+  }
+
+  selectNote(note: any) {
+    this.selectedNote = note;
+  }
+
+  goBack() {
+    this.selectedNote = null;
+  }
+
+  resetHome() {
+    this.selectedSubject = null;
+    this.selectedNote = null;
     this.currentPage = 1;
     this.updatePagination();
   }
@@ -104,5 +132,4 @@ export class HomeComponent implements OnInit {
     }
     return 0;
   }
-  
 }

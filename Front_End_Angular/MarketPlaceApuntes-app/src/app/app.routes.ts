@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CompradoComponent } from './comprado/comprado.component';
 import { PublicadoComponent } from './publicado/publicado.component';
@@ -8,6 +8,8 @@ import { RecoverPassComponent } from './recover-pass/recover-pass.component';
 import { FooterComponent } from './footer/footer.component';
 import { EnterTokenComponent } from './enter-token/enter-token.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { NoteDetailComponent } from './note-detail/note-detail.component';
+import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -16,8 +18,17 @@ export const routes: Routes = [
   { path: 'publicado', component: PublicadoComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'recover-pass', component: RecoverPassComponent},
-  { path: 'enter-token', component: EnterTokenComponent},
-  { path: 'reset-password', component: ResetPasswordComponent},
-  { path: 'footer', component: FooterComponent}
+  { path: 'recover-pass', component: RecoverPassComponent },
+  { path: 'enter-token', component: EnterTokenComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'footer', component: FooterComponent },
+  { path: 'note-detail', component: NoteDetailComponent },
+  { path: '**', redirectTo: 'home' },
 ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}
+
