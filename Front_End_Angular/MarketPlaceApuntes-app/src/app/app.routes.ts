@@ -23,7 +23,7 @@ export const routes: Routes = [
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'footer', component: FooterComponent },
   { path: 'note-detail', component: NoteDetailComponent },
-  { path: '**', redirectTo: 'home' },
+  //{ path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({

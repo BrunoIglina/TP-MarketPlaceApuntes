@@ -1,13 +1,11 @@
 <ng-container *ngIf="authChecked">
-  <ng-container *ngIf="!isAuthenticated">
-    <router-outlet></router-outlet>
+  <ng-container *ngIf="!isLoginRoute">
+    <app-header *ngIf="isAuthenticated"></app-header>
   </ng-container>
-  
-  <ng-container *ngIf="isAuthenticated">
-    <app-header [autenticado]="isAuthenticated"></app-header>
-    <div class="main-content">
-      <router-outlet></router-outlet>
-    </div>
-    <app-footer [autenticado]="isAuthenticated"></app-footer>
+
+  <router-outlet></router-outlet>
+
+  <ng-container *ngIf="!isLoginRoute">
+    <app-footer *ngIf="isAuthenticated"></app-footer>
   </ng-container>
 </ng-container>

@@ -63,7 +63,6 @@ export class HomeComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (params['reset'] === 'true') {
         this.resetHome();
-        // Use navigate to ensure HomeComponent is refreshed
         this.router.navigate(['/home'], { queryParams: { reset: null } });
       } else {
         this.updatePagination();
