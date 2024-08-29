@@ -1,8 +1,10 @@
 <div class="header-container">
-    <a routerLink="/home"> 
+    <a (click)="onHomeClick()"> 
         <img class="logo" src="assets/logo.png" alt="logo">
     </a>
-    <h1 class="mainTitle" routerLink="/home">Los Apuntes de Bentann</h1>
+    <h1 class="mainTitle" (click)="onHomeClick()"> 
+        Los Apuntes de Bentann
+    </h1>
     
     <div class="dropdown-container">
         <div class="dropdown">
@@ -21,5 +23,4 @@
             </div>
         </div>
     </div>
-  </div>
-  
+</div>

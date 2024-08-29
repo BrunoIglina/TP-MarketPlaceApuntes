@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { of } from 'rxjs';
@@ -12,34 +12,34 @@ import { FooterComponent } from './footer/footer.component';
   imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
-  
 })
-export class AppComponent implements OnInit 
-{
+export class AppComponent implements OnInit {
   title = 'MarketPlaceApuntes-app';
   isAuthenticated: boolean = false;
   authChecked: boolean = false;
+  isLoginRoute: boolean = false;
 
   constructor(private router: Router) {}
 
-  ngOnInit(): void
-  {
+  ngOnInit(): void {
     this.checkAuthentication();
-    this.router.events.subscribe(() => {
-      this.updateAuthStatus();
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.isLoginRoute = this.router.url === '/login';
+        this.updateAuthStatus();
+      }
     });
   }
 
-  checkAuthentication(): void 
-  {
+  checkAuthentication(): void {
     const token = localStorage.getItem('authToken');
     this.isAuthenticated = !!token;
     this.authChecked = true;
 
-    if (!this.isAuthenticated) 
-      {
+    if (!this.isAuthenticated) {
       this.router.navigate(['/login']);
-    } else {
+    } else if (this.router.url === '/login') {
       this.router.navigate(['/home']).then(() => {
         of(null).pipe(delay(0)).subscribe(() => {
           this.updateAuthStatus();
@@ -48,15 +48,13 @@ export class AppComponent implements OnInit
     }
   }
 
-  updateAuthStatus(): void 
-  {
+  updateAuthStatus(): void {
     const token = localStorage.getItem('authToken');
     this.isAuthenticated = !!token;
     this.authChecked = true;
   }
 
-  logout(): void 
-  {
+  logout(): void {
     localStorage.removeItem('authToken');
     this.isAuthenticated = false;
     this.router.navigate(['/login']);

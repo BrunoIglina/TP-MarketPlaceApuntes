@@ -1,0 +1,12 @@
+<div class="apunte-comprado">
+  <h1>Detalle del Apunte</h1>
+  <div *ngIf="item">
+    <img [src]="item.imagenUrl" alt="Imagen del apunte" class="apunte-imagen">
+    <h2>{{ item.titulo }}</h2>
+    <p>{{ item.descripcion }}</p>
+    <button (click)="goBack()" class="btn-volver">Volver</button>
+  </div>
+  <div *ngIf="!item">
+    <p>Apunte no encontrado.</p>
+  </div>
+</div>

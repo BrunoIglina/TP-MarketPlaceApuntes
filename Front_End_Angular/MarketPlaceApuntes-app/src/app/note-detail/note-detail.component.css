@@ -1,0 +1,93 @@
+/* Asegúrate de que el contenedor ocupe todo el ancho disponible */
+.note-detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-height: calc(100vh - 60px); /* Ajusta según el tamaño del header */
+    width: 100vw; /* Ocupa todo el ancho visible de la pantalla */
+    max-width: none; /* Permite el ancho total sin limitación */
+    box-sizing: border-box;
+    position: relative;
+    margin: 20px auto; /* Centra el contenedor horizontalmente */
+    overflow: auto; /* Permite el scroll si el contenido es demasiado grande */
+  }
+  
+  /* Asegura que la imagen tenga un tamaño adecuado */
+  .note-detail-img {
+    margin-bottom: 20px;
+    max-width: 100%; /* Limita el ancho de la imagen al 100% del contenedor */
+    text-align: center; /* Centra la imagen horizontalmente */
+  }
+  
+  .note-detail-img img {
+    width: auto;
+    height: auto;
+    max-height: 400px; /* Ajusta la altura máxima según sea necesario */
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  /* Contenedor de la información del apunte */
+  .note-detail-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    align-items: center; /* Centra el contenido horizontalmente */
+    text-align: center; /* Centra el texto dentro del contenedor de información */
+  }
+  
+  .note-detail-info h3 {
+    margin-top: 0;
+  }
+  
+  .note-detail-info p {
+    margin: 5px 0;
+  }
+  
+  .note-detail-info .button-container {
+    margin-top: auto;
+    text-align: right;
+  }
+  
+  /* Estilo del botón de "Comprar" */
+  .note-detail-info .button-container button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .note-detail-info .button-container button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+  
+  /* Estilo del botón de "Volver a la lista" */
+  .back-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: absolute;
+    top: 20px; /* Ajusta el valor si es necesario */
+    left: 20px; /* Ajusta el valor si es necesario */
+  }
+  
+  .back-button:hover {
+    background-color: #0056b3;
+  }
+  
+  

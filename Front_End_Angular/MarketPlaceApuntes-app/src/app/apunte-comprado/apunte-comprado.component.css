@@ -1,0 +1,39 @@
+.apunte-comprado {
+  padding: 20px;
+  text-align: center;
+}
+
+.apunte-comprado h1 {
+  margin-bottom: 20px;
+}
+
+.apunte-imagen {
+  width: 300px; 
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.apunte-comprado h2 {
+  margin-bottom: 10px;
+}
+
+.apunte-comprado p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.btn-volver {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-volver:hover {
+  background-color: #0056b3;
+}
+
+  

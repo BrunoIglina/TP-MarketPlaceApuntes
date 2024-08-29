@@ -1,14 +1,13 @@
 <div class="comprado-container">
-    <div *ngFor="let item of paginatedItems">
-      <mat-card class="comprado-card">
-        <img mat-card-image [src]="item.imagenUrl" alt="Imagen del producto">
-        <mat-card-title>{{ item.titulo }}</mat-card-title>
-      </mat-card>
-    </div>
+  <div *ngFor="let item of paginatedItems, let i = index">    
+    <mat-card class="comprado-card" [routerLink]="['/apunte-comprado', i]">
+      <img mat-card-image [src]="item.imagenUrl" alt="Imagen del producto">
+      <mat-card-title>{{ item.titulo }}</mat-card-title>
+    </mat-card>
   </div>
-  
-  <div class="pagination-controls">
-    <button mat-button (click)="previousPage()" [disabled]="pageIndex === 0">Anterior</button>
-    <button mat-button (click)="nextPage()" [disabled]="(pageIndex + 1) * pageSize >= items.length">Siguiente</button>
-  </div>
-  
+</div>
+
+<div class="pagination-controls">
+  <button mat-button (click)="previousPage()" [disabled]="pageIndex === 0">Anterior</button>
+  <button mat-button (click)="nextPage()" [disabled]="(pageIndex + 1) * pageSize >= items.length">Siguiente</button>
+</div>

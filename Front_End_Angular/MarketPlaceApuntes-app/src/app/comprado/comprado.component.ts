@@ -1,23 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NoteDetailComponent } from '../note-detail/note-detail.component';
+import { ActivatedRoute, Router, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { ApunteCompradoComponent } from '../apunte-comprado/apunte-comprado.component';
+import { RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  { path: './apunte-comprado.component/:id', component: ApunteCompradoComponent },
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
 
 @Component({
   selector: 'app-comprado',
   standalone: true,
-  imports: [CommonModule, MatCardModule],
+  imports: [CommonModule, MatCardModule, RouterModule],
   templateUrl: './comprado.component.html',
   styleUrls: ['./comprado.component.css']
 })
 export class CompradoComponent {
 
   items: Array<{ imagenUrl: string, titulo: string }> = [
-    { imagenUrl: 'url1.jpg', titulo: 'Producto 1' },
-    { imagenUrl: 'url2.jpg', titulo: 'Producto 2' },
-    { imagenUrl: 'url3.jpg', titulo: 'Producto 3' },
-    { imagenUrl: 'url4.jpg', titulo: 'Producto 4' },
-    { imagenUrl: 'url5.jpg', titulo: 'Producto 5' },
-    { imagenUrl: 'url6.jpg', titulo: 'Producto 6' },
+    { imagenUrl: 'assets/apunteGenerico.jpg', titulo: 'Primer adquirido' },
+    { imagenUrl: 'assets/apunteGenerico.jpg', titulo: 'Producto 2' },
+    { imagenUrl: 'assets/apunteGenerico.jpg', titulo: 'Producto 3' },
+    { imagenUrl: 'assets/apunteGenerico.jpg', titulo: 'Producto 4' },
+    { imagenUrl: 'assets/apunteGenerico.jpg', titulo: 'Producto 5' },
+    { imagenUrl: 'assets/apunteGenerico.jpg', titulo: 'Producto 6' },
     // ... otros productos
   ];
 

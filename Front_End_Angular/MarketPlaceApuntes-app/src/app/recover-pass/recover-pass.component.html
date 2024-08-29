@@ -1,2 +1,15 @@
-<p>recover-pass works!</p>
-<h3 routerLink="/login">Volver al Login</h3>
+<div class="recover-pass-container">
+  <div class="recover-pass-box">
+    <h2>Cambiar Constraseña</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <label for="email">Correo Electrónico</label>
+        <input type="email" id="email" name="email" [(ngModel)]="email" required>
+      </div>
+      <button type="submit" class="recover-pass-button">Enviar Código</button>
+    </form>
+    <div class="back-to-login">
+      <a routerLink="/login">Volver al Inicio de Sesión</a>
+    </div>
+  </div>
+</div>

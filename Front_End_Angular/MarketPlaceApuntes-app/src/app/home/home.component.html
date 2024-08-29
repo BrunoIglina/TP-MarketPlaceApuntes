@@ -1,6 +1,37 @@
-<!-- home.component.html -->
 <div class="home-container">
-  <h1>Bienvenido a Los Apuntes de Bentann</h1>
-  <p>Encuentra y comparte apuntes de manera fácil y rápida.</p>
-</div>
+  <div class="sidebar" *ngIf="!selectedNote">
+    <div *ngFor="let year of years">
+      <h2 [class.expanded]="expandedYear === year" (click)="toggleYear(year)">
+        Año {{ year }}
+      </h2>
+      <ul [class.expanded]="expandedYear === year">
+        <li *ngFor="let subject of getSubjectsForYear(year)">
+          <a (click)="selectSubject(subject)">{{ subject.name }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 
+  <div class="content" *ngIf="!selectedNote">
+    <div *ngIf="selectedSubject">
+      <h3>Apuntes para {{ selectedSubject.name }}</h3>
+      <div *ngFor="let note of paginatedNotes" class="note">
+        <img [src]="note.cover" alt="{{ note.title }}">
+        <div class="details">
+          <h4>{{ note.title }}</h4>
+          <p>{{ note.description }}</p>
+          <p><strong>Precio: $</strong> {{ note.price }}</p>
+          <button (click)="selectNote(note)">Ver Detalles</button>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <button (click)="prevPage()" [disabled]="currentPage === 1">Anterior</button>
+        <span>Página {{currentPage}} de {{totalPages()}}</span>
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages()">Siguiente</button>
+      </div>
+    </div>
+  </div>
+
+  <app-note-detail *ngIf="selectedNote" [note]="selectedNote" (back)="goBack()"></app-note-detail>
+</div>

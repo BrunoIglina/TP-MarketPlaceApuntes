@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { Router, RouterModule,  } from '@angular/router';
 import Swal from 'sweetalert2';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +10,7 @@ import Swal from 'sweetalert2';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent 
-{
+export class HeaderComponent {
   @Input() autenticado: boolean = false;
 
   constructor(private router: Router) {}
@@ -32,5 +31,9 @@ export class HeaderComponent
         this.router.navigate(['/login']);
       }
     });
+  }
+
+  onHomeClick() {
+    this.router.navigate(['/home'], { queryParams: { reset: 'true' } });
   }
 }

@@ -1,0 +1,18 @@
+<div class="note-detail-container">
+    <div class="note-detail-img">
+      <img [src]="note.cover" alt="{{ note.title }}">
+    </div>
+  
+    <div class="note-detail-info">
+      <button class="back-button" (click)="goBack()">Volver a la lista</button>
+      <h3>{{ note.title }}</h3>
+      <p><strong>Descripción:</strong> {{ note.description }}</p>
+      <p><strong>Precio:</strong> ${{ note.price }}</p>
+      <p><strong>Autor:</strong> {{ note.author }}</p>
+      <p><strong>Calificación:</strong> {{ note.rating }} / 5</p>
+      <div class="button-container">
+        <button (click)="buyNote()">Comprar</button>
+      </div>
+    </div>
+  </div>
+  
