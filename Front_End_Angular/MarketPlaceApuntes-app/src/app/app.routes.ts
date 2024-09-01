@@ -11,6 +11,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { NoteDetailComponent } from './note-detail/note-detail.component';
 import { NgModule } from '@angular/core';
 import { ApunteCompradoComponent } from './apunte-comprado/apunte-comprado.component';
+import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
+import { ContactoComponent } from './contacto/contacto.component';
 
 
 export const routes: Routes = [
@@ -26,6 +28,8 @@ export const routes: Routes = [
   { path: 'footer', component: FooterComponent },
   { path: 'note-detail', component: NoteDetailComponent },
   { path: 'apunte-comprado/:id', component: ApunteCompradoComponent },
+  { path: 'sobre-nosotros', component: SobreNosotrosComponent },
+  { path: 'contacto', component: ContactoComponent},
   //{ path: '**', redirectTo: 'home' },
 ];
 

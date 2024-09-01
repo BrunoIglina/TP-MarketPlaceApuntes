@@ -16,4 +16,12 @@ body {
   flex-direction: column;
 }
 
+.nav-link {
+  color: lightgray;
+  text-decoration: none;
+  cursor: pointer;
+}
 
+.nav-link:hover {
+  text-decoration: underline;
+}

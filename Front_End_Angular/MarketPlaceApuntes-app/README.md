@@ -34,6 +34,7 @@ npm install @sweetalert2/ngx-sweetalert2 --save
 angular/cli con comandos:
 npm install -g @angular/cli
 npm install @angular/forms
+npm install @angular/material @angular/cdk
 ----
 angular/animations con comandos:
 npm install @angular/animations
