@@ -1,18 +1,25 @@
-<div class="note-detail-container">
-    <div class="note-detail-img">
-      <img [src]="note.cover" alt="{{ note.title }}">
-    </div>
-  
-    <div class="note-detail-info">
-      <button class="back-button" (click)="goBack()">Volver a la lista</button>
-      <h3>{{ note.title }}</h3>
-      <p><strong>Descripción:</strong> {{ note.description }}</p>
-      <p><strong>Precio:</strong> ${{ note.price }}</p>
-      <p><strong>Autor:</strong> {{ note.author }}</p>
-      <p><strong>Calificación:</strong> {{ note.rating }} / 5</p>
-      <div class="button-container">
-        <button (click)="buyNote()">Comprar</button>
-      </div>
-    </div>
-  </div>
-  
+<div *ngIf="apunte">
+  <mat-card class="note-detail-card">
+    <mat-card-header>
+      <mat-card-title>{{ apunte.titulo_apunte }}</mat-card-title>
+      <mat-card-subtitle class="calificacion">Calificación: {{ apunte.calificacion_apunte }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="apunte.archivo_caratula" alt="{{ apunte.titulo_apunte }}" />
+    <mat-card-content>
+      <p>{{ apunte.descripcion_apunte }}</p>
+      <p>Fecha de Publicación: {{ apunte.fecha_hora_publicacion | date }}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      
+      <button mat-button class="ml-button" color="accent" (click)="editarApunte()">Editar</button>
+      <button mat-button class="ml-button" color="warn" (click)="borrarApunte()">Borrar</button>
+      
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+
+<div *ngIf="!apunte">
+  <p>Cargando detalles del apunte...</p>
+</div>

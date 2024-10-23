@@ -1,60 +1,73 @@
 import { Component, OnInit } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { NoteDetailComponent } from '../note-detail/note-detail.component';
-import { ActivatedRoute, Router, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { ApunteCompradoComponent } from '../apunte-comprado/apunte-comprado.component';
-import { RouterModule } from '@angular/router';
-
-const routes: Routes = [
-  { path: './apunte-comprado.component/:id', component: ApunteCompradoComponent },
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
-
+import { CompradoService } from './comprado.service'; 
+import { MatCardModule } from '@angular/material/card'; 
+import { Router, RouterModule } from '@angular/router'; 
+import { CalificacionDialogComponent } from './calificacion-dialog.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-comprado',
   standalone: true,
-  imports: [CommonModule, MatCardModule, RouterModule],
+  imports: [CommonModule, MatCardModule, RouterModule, MatDialogModule], 
   templateUrl: './comprado.component.html',
   styleUrls: ['./comprado.component.css']
 })
-export class CompradoComponent {
+export class CompradoComponent implements OnInit {
+  apuntes: any[] = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 3; 
+  numeroAlumno: number = 1; 
 
-  items: Array<{ imagenUrl: string, titulo: string }> = [
-    { imagenUrl: 'assets/apunteGenerico.jpg', titulo: 'Primer adquirido' },
-    { imagenUrl: 'assets/apunteGenerico.jpg', titulo: 'Producto 2' },
-    { imagenUrl: 'assets/apunteGenerico.jpg', titulo: 'Producto 3' },
-    { imagenUrl: 'assets/apunteGenerico.jpg', titulo: 'Producto 4' },
-    { imagenUrl: 'assets/apunteGenerico.jpg', titulo: 'Producto 5' },
-    { imagenUrl: 'assets/apunteGenerico.jpg', titulo: 'Producto 6' },
-    // ... otros productos
-  ];
+  constructor(private compradoService: CompradoService, private router: Router,  private dialog: MatDialog) {} 
 
-  pageIndex: number = 0;
-  pageSize: number = 3;
-
-  get paginatedItems(): Array<{ imagenUrl: string, titulo: string }> {
-    const startIndex = this.pageIndex * this.pageSize;
-    return this.items.slice(startIndex, startIndex + this.pageSize);
+  ngOnInit() {
+    this.loadComprados();
   }
 
-  nextPage(): void {
-    if ((this.pageIndex + 1) * this.pageSize < this.items.length) {
-      this.pageIndex++;
-    }
+  loadComprados() {
+    this.compradoService.getComprados(this.numeroAlumno).subscribe((data: any) => {
+      this.apuntes = data;
+    });
   }
 
-  previousPage(): void {
-    if (this.pageIndex > 0) {
-      this.pageIndex--;
-    }
+  get paginatedApuntes() {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+    return this.apuntes.slice(start, end);
   }
-}
+
+  get totalPages() {
+    return Math.ceil(this.apuntes.length / this.itemsPerPage);
+  }
+
+  changePage(page: number) {
+    this.currentPage = page;
+  }
+
+  verDetalles(apunteId: number) {
+    this.router.navigate(['/apunte-comprado', apunteId]); 
+  }
+
+  calificar(apunteId: number) {
+    const dialogRef = this.dialog.open(CalificacionDialogComponent, {
+      width: '250px',
+      data: { apunteId }
+    });
+  
+    dialogRef.afterClosed().subscribe((calificacion: number | null) => {
+      if (calificacion !== null) {
+        
+        // Llamada al servicio para enviar la calificación al backend
+        this.compradoService.calificarApunte(this.numeroAlumno, apunteId, calificacion)
+          .subscribe(response => {
+            alert('¡Calificación guardada!');
+            this.loadComprados(); // Refrescar la lista de apuntes comprados
+          }, error => {
+            console.error('Error al guardar la calificación:', error);
+            alert('No se pudo guardar la calificación');
+          });
+      }
+    });
+  }
+}  

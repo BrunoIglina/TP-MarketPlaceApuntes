@@ -1,5 +1,25 @@
-<!-- publicados.component.html -->
-<div class="publicados-container">
-    <h1>Publicados</h1>
-    <p>Contenido relacionado con los apuntes publicados.</p>
-</div>
+<div class="publicado-container">
+    <div *ngFor="let apunte of paginatedApuntes">
+      <mat-card class="publicado-card" (click)="verDetalles(apunte.id_apunte)">
+        <mat-card-header>
+          <mat-card-title>{{ apunte.titulo_apunte }}</mat-card-title>
+          <mat-card-subtitle class="calificacion">Calificacion: {{ apunte.calificacion_apunte }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="card-content">
+            <img mat-card-image [src]="apunte.archivo_caratula" alt="{{ apunte.titulo_apunte }}" class="card-image" />
+            <div class="card-details">
+              <p>{{ apunte.descripcion_apunte }}</p>
+              <p>Fecha de Publicación: {{ apunte.fecha_hora_publicacion | date }}</p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  
+  <div class="pagination-controls">
+    <button mat-button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Anterior</button>
+    <button mat-button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Siguiente</button>
+  </div>
+  

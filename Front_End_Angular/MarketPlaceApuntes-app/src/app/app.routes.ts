@@ -10,6 +10,7 @@ import { EnterTokenComponent } from './enter-token/enter-token.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NoteDetailComponent } from './note-detail/note-detail.component';
 import { NgModule } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 import { ApunteCompradoComponent } from './apunte-comprado/apunte-comprado.component';
 import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 import { ContactoComponent } from './contacto/contacto.component';
@@ -19,6 +20,7 @@ export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'comprado', component: CompradoComponent },
+  { path: 'comprado/:id', component: CompradoComponent },
   { path: 'publicado', component: PublicadoComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'login', component: LoginComponent },
@@ -27,6 +29,7 @@ export const routes: Routes = [
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'footer', component: FooterComponent },
   { path: 'note-detail', component: NoteDetailComponent },
+  { path: 'note-detail/:id', component: NoteDetailComponent },
   { path: 'apunte-comprado/:id', component: ApunteCompradoComponent },
   { path: 'sobre-nosotros', component: SobreNosotrosComponent },
   { path: 'contacto', component: ContactoComponent},

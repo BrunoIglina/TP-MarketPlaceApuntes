@@ -1,39 +1,36 @@
-.apunte-comprado {
-  padding: 20px;
-  text-align: center;
+.note-detail-card {
+  margin: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.apunte-comprado h1 {
-  margin-bottom: 20px;
+.calificacion {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #ff9800; 
 }
 
-.apunte-imagen {
-  width: 300px; 
-  height: auto;
-  margin-bottom: 20px;
+mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
 }
 
-.apunte-comprado h2 {
-  margin-bottom: 10px;
+.ml-button {
+  flex: 1;
+  margin: 0 5px; 
+  background-color: #fff;
+  border: 1px solid #0073e6; 
+  color: #0073e6; 
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.apunte-comprado p {
-  font-size: 18px;
-  margin-bottom: 20px;
+.ml-button:hover {
+  background-color: #0073e6; 
+  color: #fff; 
 }
 
-.btn-volver {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
+mat-card-content p {
+  font-size: 1em;
+  line-height: 1.5;
 }
-
-.btn-volver:hover {
-  background-color: #0056b3;
-}
-
-  
