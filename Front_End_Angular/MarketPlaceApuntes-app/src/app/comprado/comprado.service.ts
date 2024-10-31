@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CompradoService {
   private apiUrl = 'http://localhost:3000/api/compras'; 
+  private apiUrlPrecio = 'http://localhost:3000/api/precios';
 
   constructor(private http: HttpClient) {}
 
@@ -21,5 +22,9 @@ export class CompradoService {
     
     
     return this.http.patch(url, body);
+  }
+
+  getPrecioByApunteId(apunteId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrlPrecio}/${apunteId}`);
   }
 }

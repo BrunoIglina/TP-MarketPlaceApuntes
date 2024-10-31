@@ -11,6 +11,7 @@
   max-width: 400px; 
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
   transition: all 400ms ease;
+  cursor: pointer; 
 }
 
 .comprado-card:hover {
@@ -23,9 +24,11 @@
 }
 
 .card-image {
-  width: 100px; 
-  height: auto; 
+  width: 120px; 
+  height: 120px;
+  object-fit: cover; 
   margin-right: 15px;
+  border-radius: 5px; 
 }
 
 .card-details {
@@ -36,4 +39,49 @@
 .calificacion {
   font-weight: bold; 
   color: #3cff00; 
+}
+
+.precio-resaltado {
+  font-size: 1.2em;     
+  font-weight: bold;   
+  color: #000000;       
+  padding: 5px 10px;    
+  border-radius: 4px;   
+  display: inline-block; 
+}
+
+.ml-button {
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  background-color: #0073e6;
+  color: white; 
+  font-weight: bold; 
+  border: none; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease, transform 0.2s ease; 
+}
+
+.ml-button:hover {
+  background-color: #005bb5; 
+  transform: translateY(-2px); 
+}
+
+.ml-button:active {
+  transform: translateY(0); 
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center; 
+  margin-top: 20px; 
+}
+
+.pagination-controls button {
+  margin: 0 10px; 
+}
+
+.pagination-controls button[disabled] {
+  background-color: #e0e0e0; 
+  color: #a0a0a0; 
+  cursor: not-allowed; 
 }

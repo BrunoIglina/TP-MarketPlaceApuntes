@@ -14,6 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ApunteCompradoComponent } from './apunte-comprado/apunte-comprado.component';
 import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { CargarApunteComponent } from './cargar-apunte/cargar-apunte.component';
 
 
 export const routes: Routes = [
@@ -33,6 +34,7 @@ export const routes: Routes = [
   { path: 'apunte-comprado/:id', component: ApunteCompradoComponent },
   { path: 'sobre-nosotros', component: SobreNosotrosComponent },
   { path: 'contacto', component: ContactoComponent},
+  { path: 'cargar-apunte', component: CargarApunteComponent}
   //{ path: '**', redirectTo: 'home' },
 ];
 
