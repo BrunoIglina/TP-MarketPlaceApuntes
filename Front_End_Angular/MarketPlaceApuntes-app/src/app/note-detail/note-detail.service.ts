@@ -28,5 +28,9 @@ export class NoteDetailService {
   getPrecioByApunteId(apunteId: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrlPrecio}/${apunteId}`);
   }
+
+  updateApunte(id: string, apunteData: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, apunteData);
+  }
   
 }

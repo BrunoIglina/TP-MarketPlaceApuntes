@@ -93,9 +93,10 @@ export class NoteDetailComponent implements OnInit {
   
 
   editarApunte() {
-    console.log('Editar apunte:', this.apunte);
-    
-  }
+    console.log('ID del apunte:', this.apunte.id_apunte); 
+    this.router.navigate(['/edicionApunte', this.apunte.id_apunte]);
+}
+
   
   async borrarApunte() {
     const apunteId = this.apunte.id_apunte; 

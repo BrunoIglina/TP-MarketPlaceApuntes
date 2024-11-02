@@ -15,7 +15,7 @@ import { ApunteCompradoComponent } from './apunte-comprado/apunte-comprado.compo
 import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { CargarApunteComponent } from './cargar-apunte/cargar-apunte.component';
-
+import { EdicionApunteComponent } from './edicion-apunte/edicion-apunte.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -34,7 +34,8 @@ export const routes: Routes = [
   { path: 'apunte-comprado/:id', component: ApunteCompradoComponent },
   { path: 'sobre-nosotros', component: SobreNosotrosComponent },
   { path: 'contacto', component: ContactoComponent},
-  { path: 'cargar-apunte', component: CargarApunteComponent}
+  { path: 'cargar-apunte', component: CargarApunteComponent},
+  {path: 'edicionApunte/:id', component: EdicionApunteComponent},
   //{ path: '**', redirectTo: 'home' },
 ];
 

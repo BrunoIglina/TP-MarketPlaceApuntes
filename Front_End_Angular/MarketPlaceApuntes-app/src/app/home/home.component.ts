@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NoteDetailComponent } from '../note-detail/note-detail.component';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { NoteService } from './homeService'; // Importa el servicio
 
 @Component({
   selector: 'app-home',
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit {
   selectedNote: any | null = null; 
   expandedYear: number | null = null;
   previousScrollPosition: number = 0;
+
 
   years: number[] = [1, 2, 3, 4, 5]; 
   subjects: any[] = [
@@ -55,9 +57,14 @@ export class HomeComponent implements OnInit {
     { subjectId: 2, title: 'Apunte de Física I', description: 'Resumen del tema Y', cover: 'assets/fis1.png', price: 250 },
     
   ];
+  selectedSubjectNotes: any[] = []; 
   paginatedNotes: any[] = [];
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private noteService: NoteService 
+  ) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -81,7 +88,17 @@ export class HomeComponent implements OnInit {
   selectSubject(subject: any) {
     this.selectedSubject = subject;
     this.currentPage = 1;
-    this.updatePagination();
+
+
+    this.noteService.getNotesBySubjectId(1).subscribe(
+      (data) => {
+        this.selectedSubjectNotes = data;
+        this.updatePagination();
+      },
+      (error) => {
+        console.error('Error al obtener los apuntes:', error);
+      }
+    );
   }
 
   selectNote(note: any) {
@@ -100,12 +117,15 @@ export class HomeComponent implements OnInit {
   }
 
   getNotesForSubject(subject: any) {
-    return this.notes.filter(note => note.subjectId === subject.id);
+    return this.selectedSubjectNotes; 
   }
 
   updatePagination() {
     if (this.selectedSubject) {
-      this.paginatedNotes = this.getNotesForSubject(this.selectedSubject).slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
+      this.paginatedNotes = this.getNotesForSubject(this.selectedSubject).slice(
+        (this.currentPage - 1) * this.itemsPerPage,
+        this.currentPage * this.itemsPerPage
+      );
     } else {
       this.paginatedNotes = [];
     }
