@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   line-height: 1.6;
   margin: 0;
   padding: 0;
@@ -10,24 +10,24 @@ body {
   flex-direction: column;
   min-height: 100vh;
   overflow: hidden;
-  width: 100% ;
+  width: 100%;
 }
 
 .sidebar {
   width: 25%;
-  padding: 10px;
-  background-color: #f4f4f4;
-  border-right: 1px solid #ddd;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  padding: 15px; /* Aumenté el padding para un aspecto más espacioso */
+  background-color: #f9f9f9; /* Fondo gris muy claro */
+  border-right: 1px solid #ddd; /* Borde derecho */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra */
   position: relative;
   overflow-y: auto;
 }
 
 .sidebar h2 {
   cursor: pointer;
-  padding: 10px;
-  background-color: #e7e7e7;
-  margin: 5px 0;
+  padding: 12px;
+  background-color: rgba(144, 238, 144, 0.85); /* Verde claro más opaco */
+  margin: 8px 0; /* Espacio ligeramente aumentado */
   border-radius: 5px;
   border: 1px solid transparent;
   transition: background-color 0.3s, border-color 0.3s;
@@ -35,184 +35,215 @@ body {
 
 .sidebar h2:hover,
 .sidebar h2:focus {
-  background-color: #ddd;
-  border-color: #aaa;
+  background-color: rgba(144, 238, 144, 1); /* Verde más oscuro al pasar el mouse */
 }
 
 .sidebar ul {
   list-style-type: none;
-  padding-left: 15px;
+  padding-left: 20px; /* Aumenté el padding */
   display: none;
   transition: max-height 0.3s ease-out;
   overflow: hidden;
 }
 
 .sidebar ul.expanded {
-  display: block;
+  display: block; /* Mostrar la lista al expandirse */
 }
 
 .sidebar li {
-  padding: 5px 0;
+  padding: 8px 0; /* Aumenté el padding para más espacio */
 }
 
 .sidebar li a {
   display: block;
-  padding: 5px;
+  padding: 8px;
   text-decoration: none;
-  color: #333;
-  border-radius: 3px;
+  color: #333; /* Color del texto */
+  border-radius: 5px; /* Esquinas redondeadas */
   transition: background-color 0.3s;
 }
 
 .sidebar li a:hover,
 .sidebar li a:focus {
-  background-color: #e7e7e7;
+  background-color: #e7e7e7; /* Color al pasar el mouse */
 }
 
 .sidebar h2::after {
-  content: ' ▼';
-  font-size: 0.8em;
+  content: ' ▼'; /* Indicador de expandir */
+  font-size: 0.9em; /* Tamaño de fuente aumentado */
   transition: transform 0.3s;
 }
 
 .sidebar h2.expanded::after {
-  content: ' ▲';
+  content: ' ▲'; /* Indicador de colapsar */
   transform: rotate(180deg);
 }
 
 .content {
-  flex: 1;
-  padding: 10px;
-  background-color: #fff;
-  overflow-y: auto;
+  flex: 1; /* Ocupa el espacio restante */
+  padding: 15px; /* Aumenté el padding para un aspecto más espacioso */
+  background-color: #fff; /* Fondo blanco para el contenido */
+  overflow-y: auto; /* Permite scroll si es necesario */
 }
 
 .note {
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
-  display: flex;
-  align-items: flex-start;
+  border: 1px solid #ddd; /* Borde gris */
+  padding: 12px; /* Aumenté el padding para más espacio */
+  margin: 15px 0; /* Espaciado más amplio */
+  border-radius: 5px; /* Esquinas redondeadas */
+  display: flex; /* Flexbox para alinear contenido */
+  align-items: flex-start; /* Alineación superior */
+  background-color: rgba(144, 238, 144, 0.15); /* Verde claro con baja opacidad */
 }
 
 .note img {
-  width: 80px;
-  height: 100px;
-  margin-right: 15px;
+  width: 80px; /* Tamaño de la imagen */
+  height: 100px; /* Tamaño de la imagen */
+  margin-right: 15px; /* Espacio a la derecha de la imagen */
 }
 
 .note .details button {
-  background-color: #28a745;
-  color: #fff;
+  background-color: #28a745; /* Color verde */
+  color: #fff; /* Texto blanco */
   border: none;
-  padding: 8px 16px;
-  font-size: 14px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-  margin-top: 10px;
+  padding: 8px 16px; /* Espaciado interno */
+  font-size: 14px; /* Tamaño de fuente */
+  border-radius: 5px; /* Esquinas redondeadas */
+  cursor: pointer; /* Cursor de puntero */
+  transition: background-color 0.3s, transform 0.3s; /* Transición suave */
+  margin-top: 10px; /* Margen superior */
 }
 
 .note .details button:hover {
-  background-color: #218838;
-  transform: scale(1.05);
+  background-color: #218838; /* Color más oscuro al pasar el mouse */
+  transform: scale(1.05); /* Efecto de aumento */
 }
+
 .note h4 {
-  margin: 0;
+  margin: 0; /* Sin margen */
 }
 
 .note p {
-  margin: 5px 0;
+  margin: 5px 0; /* Espaciado vertical */
 }
 
 .note p:last-of-type {
-  font-weight: bold;
+  font-weight: bold; /* Negrita para el último párrafo */
 }
 
 .pagination {
-  margin-top: 20px;
-  text-align: center;
-  padding-bottom: 20px;
+  margin-top: 20px; /* Margen superior */
+  text-align: center; /* Centrado */
+  padding-bottom: 20px; /* Espaciado inferior */
 }
 
 .pagination button {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #007bff; /* Color azul */
+  color: #fff; /* Texto blanco */
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin: 0 5px;
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño de fuente */
+  border-radius: 5px; /* Esquinas redondeadas */
+  cursor: pointer; /* Cursor de puntero */
+  transition: background-color 0.3s; /* Transición suave */
+  margin: 0 5px; /* Espaciado lateral */
 }
 
 .pagination button:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* Color más oscuro al pasar el mouse */
 }
 
 .pagination button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+  background-color: #ccc; /* Color gris cuando está deshabilitado */
+  cursor: not-allowed; /* Cursor de no permitido */
 }
 
 /* Responsive Design */
-
 @media (min-width: 1200px) {
   .home-container {
-    flex-direction: row;
+    flex-direction: row; /* Dirección en fila */
   }
 
   .sidebar {
-    width: 25%;
+    width: 25%; /* Ancho de la barra lateral */
   }
 
   .content {
-    flex: 1;
+    flex: 1; /* Ocupa el resto del espacio */
   }
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
   .home-container {
-    flex-direction: column;
+    flex-direction: column; /* Dirección en columna */
   }
 
   .sidebar {
-    width: 100%;
+    width: 100%; /* Ancho completo */
   }
 
   .content {
-    flex: 1;
+    flex: 1; /* Ocupa el resto del espacio */
   }
 }
 
 @media (max-width: 767px) {
   .home-container {
-    flex-direction: column;
+    flex-direction: column; /* Dirección en columna */
   }
 
   .sidebar {
-    width: 100%;
+    width: 100%; /* Ancho completo */
   }
 
   .note {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: column; /* Dirección en columna para notas */
+    align-items: flex-start; /* Alineación a la izquierda */
   }
 
   .note img {
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* Espacio inferior de la imagen */
   }
 
   .pagination {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: flex; /* Flexbox para paginación */
+    flex-direction: column; /* Dirección en columna */
+    align-items: center; /* Alineación centrada */
   }
 
-  .pagination button {
-    width: 100%;
-    margin-bottom: 5px;
-  }
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.edit-button {
+  background-color: #007bff; /* Azul */
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-button:hover {
+  background-color: #0056b3; /* Azul más oscuro */
+}
+
+.delete-button {
+  background-color: #dc3545; /* Rojo */
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+  background-color: #c82333; /* Rojo más oscuro */
 }

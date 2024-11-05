@@ -38,20 +38,6 @@
     height: auto;
 }
 
-.mainTitle {
-    font-family: 'Arial', sans-serif;
-    font-size: 30px;
-    font-weight: bold;
-    color: #333333;
-    text-align: left;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    letter-spacing: 2px;
-    border-bottom: 2px solid #cccccc;
-    padding-bottom: 10px;
-}
-
 .dropdown-container {
     display: flex;
     align-items: center;
@@ -93,3 +79,19 @@
     background-color: #00A4BD;
     color: #FFFFFF;
 }
+
+.create-button {
+    padding: 8px 12px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.create-button:hover {
+    background-color: #45a049;
+}
+

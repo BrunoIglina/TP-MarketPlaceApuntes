@@ -1,0 +1,48 @@
+<div class="modificar-materia-container">
+  <mat-card class="modificar-materia-card" *ngIf="!loading; else loadingTemplate">
+    <form [formGroup]="materiaForm" (ngSubmit)="onSubmit()">
+      <mat-card-header>
+        <mat-card-title>Editar Materia</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="form-group">
+          <div class="cod-materia">
+            Código de la Materia: <span class="cod-materia-value">{{ codMateria }}</span>
+          </div>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Nombre de la Materia</mat-label>
+            <input matInput formControlName="nombre_materia" required>
+            <mat-error *ngIf="materiaForm.get('nombre_materia')?.hasError('required')">
+              Este campo es obligatorio.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Nivel de Carrera</mat-label>
+            <input matInput formControlName="nivel_carrera" required type="number">
+            <mat-error *ngIf="materiaForm.get('nivel_carrera')?.hasError('required')">
+              Este campo es obligatorio.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="action-buttons">
+        <button mat-raised-button class="cancel-button" type="button" (click)="cancelarEdicion()">Cancelar</button>
+        <button mat-raised-button class="submit-button" type="submit">Guardar Cambios</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+
+  <ng-template #loadingTemplate>
+    <div class="loading-message">Cargando la materia...</div>
+  </ng-template>
+</div>
+
+
+
+
+
+
