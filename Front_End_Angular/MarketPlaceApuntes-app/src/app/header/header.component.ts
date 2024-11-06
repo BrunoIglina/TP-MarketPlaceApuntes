@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { Router, RouterModule,  } from '@angular/router';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -35,5 +36,9 @@ export class HeaderComponent {
 
   onHomeClick() {
     this.router.navigate(['/home'], { queryParams: { reset: 'true' } });
+  }
+
+  onCreateMateriaClick() {
+    this.router.navigate(['/agregar-materia']);
   }
 }
