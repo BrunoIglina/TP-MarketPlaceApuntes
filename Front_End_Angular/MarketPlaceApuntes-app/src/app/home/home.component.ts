@@ -102,8 +102,15 @@ export class HomeComponent implements OnInit {
   }
 
   selectNote(note: any) {
-    this.selectedNote = note;
+    if (note && note.id_apunte) {
+      this.router.navigate(['/compra-apunte', note.id_apunte]); 
+    } else {
+      console.error('El ID del apunte no está definido:', note);
+    }
   }
+  
+  
+  
 
   goBack() {
     this.selectedNote = null;

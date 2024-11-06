@@ -16,6 +16,9 @@ import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.componen
 import { ContactoComponent } from './contacto/contacto.component';
 import { CargarApunteComponent } from './cargar-apunte/cargar-apunte.component';
 import { EdicionApunteComponent } from './edicion-apunte/edicion-apunte.component';
+import { CompraApunteComponent } from './compra-apunte/compra-apunte.component';
+import { AppSucessComponent } from './app-sucess/app-sucess.component';
+import { MercadoPagoComponent } from './mercado-pago/mercado-pago.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -36,6 +39,9 @@ export const routes: Routes = [
   { path: 'contacto', component: ContactoComponent},
   { path: 'cargar-apunte', component: CargarApunteComponent},
   {path: 'edicionApunte/:id', component: EdicionApunteComponent},
+  {path: 'compra-apunte/:id', component: CompraApunteComponent},
+  { path: 'success', component: AppSucessComponent },
+  { path: 'mercado-pago', component: MercadoPagoComponent}
   //{ path: '**', redirectTo: 'home' },
 ];
 
