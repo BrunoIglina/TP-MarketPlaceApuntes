@@ -86,76 +86,106 @@ body {
   overflow-y: auto; /* Permite scroll si es necesario */
 }
 
-.note {
-  border: 1px solid #ddd; /* Borde gris */
-  padding: 12px; /* Aumenté el padding para más espacio */
-  margin: 15px 0; /* Espaciado más amplio */
-  border-radius: 5px; /* Esquinas redondeadas */
-  display: flex; /* Flexbox para alinear contenido */
-  align-items: flex-start; /* Alineación superior */
-  background-color: rgba(144, 238, 144, 0.15); /* Verde claro con baja opacidad */
+.notes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.note img {
-  width: 80px; /* Tamaño de la imagen */
-  height: 100px; /* Tamaño de la imagen */
-  margin-right: 15px; /* Espacio a la derecha de la imagen */
+.note-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+  width: 100%; /* Ocupa todo el ancho */
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.note .details button {
-  background-color: #28a745; /* Color verde */
-  color: #fff; /* Texto blanco */
+.note-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.note-details {
+  text-align: center;
+}
+
+.note-details h4 {
+  margin: 10px 0;
+}
+
+.note-details p {
+  margin: 5px 0;
+}
+
+.note-details button {
+  background-color: #007bff;
+  color: #fff;
   border: none;
-  padding: 8px 16px; /* Espaciado interno */
-  font-size: 14px; /* Tamaño de fuente */
-  border-radius: 5px; /* Esquinas redondeadas */
-  cursor: pointer; /* Cursor de puntero */
-  transition: background-color 0.3s, transform 0.3s; /* Transición suave */
-  margin-top: 10px; /* Margen superior */
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.note .details button:hover {
-  background-color: #218838; /* Color más oscuro al pasar el mouse */
-  transform: scale(1.05); /* Efecto de aumento */
+.note-details button:hover {
+  background-color: #0056b3;
 }
 
-.note h4 {
-  margin: 0; /* Sin margen */
+.calificacion {
+  font-weight: bold; 
+  color: #3cff00; 
 }
 
-.note p {
-  margin: 5px 0; /* Espaciado vertical */
+.precio-resaltado {
+  font-size: 1.2em;     
+  font-weight: bold;   
+  color: #000000;       
+  padding: 5px 10px;    
+  border-radius: 4px;   
+  display: inline-block; 
 }
 
-.note p:last-of-type {
-  font-weight: bold; /* Negrita para el último párrafo */
+.ml-button {
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  background-color: #0073e6;
+  color: white; 
+  font-weight: bold; 
+  border: none; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease, transform 0.2s ease; 
 }
 
-.pagination {
-  margin-top: 20px; /* Margen superior */
-  text-align: center; /* Centrado */
-  padding-bottom: 20px; /* Espaciado inferior */
+.ml-button:hover {
+  background-color: #005bb5; 
+  transform: translateY(-2px); 
 }
 
-.pagination button {
-  background-color: #007bff; /* Color azul */
-  color: #fff; /* Texto blanco */
-  border: none;
-  padding: 10px 20px; /* Espaciado interno */
-  font-size: 16px; /* Tamaño de fuente */
-  border-radius: 5px; /* Esquinas redondeadas */
-  cursor: pointer; /* Cursor de puntero */
-  transition: background-color 0.3s; /* Transición suave */
-  margin: 0 5px; /* Espaciado lateral */
+.ml-button:active {
+  transform: translateY(0); 
 }
 
-.pagination button:hover {
-  background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+.pagination-controls {
+  display: flex;
+  justify-content: center; 
+  margin-top: 20px; 
 }
 
-.pagination button:disabled {
-  background-color: #ccc; /* Color gris cuando está deshabilitado */
-  cursor: not-allowed; /* Cursor de no permitido */
+.pagination-controls button {
+  margin: 0 10px; 
+}
+
+.pagination-controls button[disabled] {
+  background-color: #e0e0e0; 
+  color: #a0a0a0; 
+  cursor: not-allowed; 
 }
 
 /* Responsive Design */
@@ -210,7 +240,6 @@ body {
     flex-direction: column; /* Dirección en columna */
     align-items: center; /* Alineación centrada */
   }
-
 }
 
 .button-group {
@@ -246,4 +275,106 @@ body {
 
 .delete-button:hover {
   background-color: #c82333; /* Rojo más oscuro */
+}
+
+.notes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.note-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+  width: 100%; /* Ocupa todo el ancho */
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.note-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.note-details {
+  text-align: center;
+}
+
+.note-details h4 {
+  margin: 10px 0;
+}
+
+.note-details p {
+  margin: 5px 0;
+}
+
+.note-details button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.note-details button:hover {
+  background-color: #0056b3;
+}
+
+.calificacion {
+  font-weight: bold; 
+  color: #3cff00; 
+}
+
+.precio-resaltado {
+  font-size: 1.2em;     
+  font-weight: bold;   
+  color: #000000;       
+  padding: 5px 10px;    
+  border-radius: 4px;   
+  display: inline-block; 
+}
+
+.ml-button {
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  background-color: #0073e6;
+  color: white; 
+  font-weight: bold; 
+  border: none; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease, transform 0.2s ease; 
+}
+
+.ml-button:hover {
+  background-color: #005bb5; 
+  transform: translateY(-2px); 
+}
+
+.ml-button:active {
+  transform: translateY(0); 
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center; 
+  margin-top: 20px; 
+}
+
+.pagination-controls button {
+  margin: 0 10px; 
+}
+
+.pagination-controls button[disabled] {
+  background-color: #e0e0e0; 
+  color: #a0a0a0; 
+  cursor: not-allowed; 
 }

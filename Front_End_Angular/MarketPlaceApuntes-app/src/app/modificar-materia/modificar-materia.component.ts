@@ -42,7 +42,6 @@ export class ModificarMateriaComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Cambia 'cod_materia' por 'id'
     this.codMateria = Number(this.route.snapshot.paramMap.get('id'));
     console.log('Código de materia recibido:', this.codMateria); // Verificación del parámetro
   
@@ -67,7 +66,6 @@ export class ModificarMateriaComponent implements OnInit {
       this.router.navigate(['/home']);
     }
   }
-  
 
   onSubmit() {
     if (this.materiaForm.invalid) {
@@ -92,7 +90,3 @@ export class ModificarMateriaComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 }
-
-
-
-

@@ -9,7 +9,6 @@ import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 
-
 @Component({
   selector: 'app-comprado',
   standalone: true,
@@ -24,7 +23,7 @@ export class CompradoComponent implements OnInit {
   numeroAlumno: number = 1; 
   defaultImage: string = '../../assets/AM1.jpg';
 
-  constructor(private compradoService: CompradoService, private router: Router,  private dialog: MatDialog) {} 
+  constructor(private compradoService: CompradoService, private router: Router, private dialog: MatDialog) {} 
 
   ngOnInit() {
     this.loadComprados();
@@ -73,7 +72,6 @@ export class CompradoComponent implements OnInit {
     this.router.navigate(['/apunte-comprado', apunteId]); 
   }
 
-  
   calificar(apunteId: number) {
     const dialogRef = this.dialog.open(CalificacionDialogComponent, {
       width: '250px',
@@ -90,7 +88,7 @@ export class CompradoComponent implements OnInit {
               text: 'La calificación se ha aplicado correctamente.',
               confirmButtonText: 'Aceptar'
             }).then(() => {
-              this.router.navigate(['/comprado']);
+              this.loadComprados(); // Recargar los apuntes después de calificar
             });
           }, error => {
             console.error('Error al guardar la calificación:', error);
@@ -104,4 +102,4 @@ export class CompradoComponent implements OnInit {
       }
     });
   }
-}  
+}
