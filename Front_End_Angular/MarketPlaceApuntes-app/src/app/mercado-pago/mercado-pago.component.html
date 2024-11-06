@@ -1,0 +1,19 @@
+<mat-card class="note-detail-card" *ngIf="apunte">
+    <mat-card-header>
+      <mat-card-title>{{ apunte.titulo_apunte }}</mat-card-title>
+      <mat-card-subtitle class="calificacion">Calificación: {{ apunte.calificacion_apunte }}</mat-card-subtitle>
+    </mat-card-header>
+    
+    <img mat-card-image [src]="apunte.archivo_caratula" alt="{{ apunte.titulo_apunte }}" class="card-image"/>
+    
+    <mat-card-content>
+      <p>{{ apunte.descripcion_apunte }}</p>
+      <p>Fecha de Publicación: {{ apunte.fecha_hora_publicacion | date }}</p>
+      <p><strong>Precio $</strong> <span class="precio">{{ precio?.monto_precio || 'Sin precio disponible' }}</span></p>
+    </mat-card-content>
+    
+    <mat-card-actions class="action-buttons">
+      <div id="wallet_container"></div>
+    </mat-card-actions>
+  </mat-card>
+  

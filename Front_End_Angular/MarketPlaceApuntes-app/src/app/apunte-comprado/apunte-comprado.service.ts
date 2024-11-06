@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ApunteService {
   private apiUrl = 'http://localhost:3000/api/apuntes'; 
+  private apiUrl2 = 'http://localhost:3000/api/compras'
 
   constructor(private http: HttpClient) {}
 
@@ -14,7 +15,10 @@ export class ApunteService {
     return this.http.get<any>(`${this.apiUrl}/${id}`); 
   }
 
-  deleteApunte(id: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  
+  calificarApunte(numeroAlumno: number, apunteId: number, calificacion: number): Observable<any> {
+    const body = { calificacion_apunte_comprador: calificacion };
+    const url = `${this.apiUrl2}/${numeroAlumno}/${apunteId}`; 
+    return this.http.patch(url, body);
   }
 }

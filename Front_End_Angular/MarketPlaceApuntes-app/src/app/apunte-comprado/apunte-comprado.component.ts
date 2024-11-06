@@ -5,18 +5,21 @@ import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2'; 
 import { ApunteService } from './apunte-comprado.service';
+import { CalificacionDialogComponent } from '../comprado/calificacion-dialog.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-apunte-comprado',
   standalone: true,
   templateUrl: './apunte-comprado.component.html',
-  imports: [CommonModule, RouterModule, MatCardModule],
+  imports: [CommonModule, RouterModule, MatCardModule, MatDialogModule],
   styleUrls: ['./apunte-comprado.component.css']
 })
 export class ApunteCompradoComponent implements OnInit { @Input() note: any; 
   apunte: any;
-
-  constructor(private noteDetailService: ApunteService, private route: ActivatedRoute, private router: Router) {}
+  numeroAlumno: number = 1; 
+  dialog: MatDialog;
+  constructor(private noteDetailService: ApunteService, private route: ActivatedRoute, private router: Router, dialog: MatDialog) {this.dialog = dialog;}
 
   ngOnInit() {
     this.loadApunte();
@@ -38,56 +41,66 @@ export class ApunteCompradoComponent implements OnInit { @Input() note: any;
     console.log('Editar apunte:', this.apunte);
   }
   
-  async borrarApunte() {
-    const apunteId = this.apunte.id_apunte; 
-
-    
-    const result = await Swal.fire({
-      title: '¿Estás seguro?',
-      text: "¡Esto eliminará el apunte permanentemente!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Sí, eliminarlo',
-      cancelButtonText: 'Cancelar'
+  
+  
+  calificarApunte(apunteId: number) {
+    const dialogRef = this.dialog.open(CalificacionDialogComponent, {
+      width: '250px',
+      data: { apunteId }
     });
+  
+    dialogRef.afterClosed().subscribe((calificacion: number | null) => {
+      if (calificacion !== null) {
+        this.noteDetailService.calificarApunte(this.numeroAlumno, apunteId, calificacion)
+          .subscribe(response => {
+            Swal.fire({
+              icon: 'success',
+              title: '¡Calificación guardada!',
+              text: 'La calificación se ha aplicado correctamente.',
+              confirmButtonText: 'Aceptar'
+            }).then(() => {
+              this.router.navigate(['/comprado']);
+            });
+          }, error => {
+            console.error('Error al guardar la calificación:', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Error al guardar la calificación',
+              text: 'No se pudo guardar la calificación. Intente nuevamente.',
+              confirmButtonText: 'Aceptar'
+            });
+          });
+      }
+    });
+  }
 
-    if (result.isConfirmed) {
-      this.noteDetailService.deleteApunte(apunteId).subscribe({
-        next: () => {
-          
-          Swal.fire({
-            title: 'Eliminado!',
-            text: 'El apunte se eliminó con éxito.',
-            icon: 'success',
-            confirmButtonText: 'Aceptar'
-          });
-          
-          this.router.navigate(['/home']); 
-        },
-        error: (err) => {
-          console.error('Error al eliminar el apunte:', err);
-          
-          Swal.fire({
-            title: 'Error!',
-            text: 'No se pudo eliminar el apunte.',
-            icon: 'error',
-            confirmButtonText: 'Aceptar'
-          });
-        }
+  visualizarApunte() {
+    if (this.apunte && this.apunte.archivo_apunte) {
+      const base64Data = this.apunte.archivo_apunte.startsWith('data:') 
+        ? this.apunte.archivo_apunte.split(',')[1] 
+        : this.apunte.archivo_apunte;
+
+      const byteCharacters = atob(base64Data);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: 'application/pdf' });
+
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = `${this.apunte.titulo_apunte}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      Swal.fire({
+        title: 'Error!',
+        text: 'No hay un archivo de apunte disponible para descargar.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
       });
-    }}
-  
-  calificarApunte() {
-    // Lógica para calificar el apunte
-    console.log('Calificar apunte:', this.apunte);
-    // Podrías mostrar un modal o redirigir a un formulario para calificar
+    }
   }
-  comprarApunte() {
-    // Lógica para comprar el apunte
-    console.log('Comprar apunte:', this.apunte);
-    // Aquí podrías llamar a un servicio para procesar la compra
-  }
-  
-}
+}  

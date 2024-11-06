@@ -16,6 +16,11 @@ import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.componen
 import { ContactoComponent } from './contacto/contacto.component';
 import { ModificarMateriaComponent } from './modificar-materia/modificar-materia.component';
 import { AgregarMateriaComponent } from './agregar-materia/agregar-materia.component';
+import { CargarApunteComponent } from './cargar-apunte/cargar-apunte.component';
+import { EdicionApunteComponent } from './edicion-apunte/edicion-apunte.component';
+import { CompraApunteComponent } from './compra-apunte/compra-apunte.component';
+import { AppSucessComponent } from './app-sucess/app-sucess.component';
+import { MercadoPagoComponent } from './mercado-pago/mercado-pago.component';
 
 
 export const routes: Routes = [
@@ -37,6 +42,11 @@ export const routes: Routes = [
   { path: 'contacto', component: ContactoComponent},
   { path: 'modificar-materia/:id', component: ModificarMateriaComponent },
   { path: 'agregar-materia', component: AgregarMateriaComponent },
+  { path: 'cargar-apunte', component: CargarApunteComponent},
+  {path: 'edicionApunte/:id', component: EdicionApunteComponent},
+  {path: 'compra-apunte/:id', component: CompraApunteComponent},
+  { path: 'success', component: AppSucessComponent },
+  { path: 'mercado-pago', component: MercadoPagoComponent}
   //{ path: '**', redirectTo: 'home' },
 ];
 

@@ -1,0 +1,56 @@
+.note-detail-card {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espacio entre los elementos del formulario */
+}
+
+.file-display-area {
+  padding: 15px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px; /* Espacio adicional entre el contenido y los botones */
+}
+
+.submit-button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: #4caf50; /* Verde para guardar */
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cancel-button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: #f44336; /* Rojo para cancelar */
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-button:hover,
+.cancel-button:hover {
+  transform: translateY(-2px);
+}
+
+.loading-message {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+}
