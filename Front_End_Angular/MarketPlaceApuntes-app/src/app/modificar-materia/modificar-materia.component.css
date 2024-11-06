@@ -1,0 +1,87 @@
+body {
+  background-color: #ffffff; /* Fondo blanco para toda la pantalla */
+  margin: 0; /* Eliminar el margen predeterminado del body */
+  font-family: Arial, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
+}
+
+.modificar-materia-card {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px; /* Padding interno */
+  padding-bottom: 40px; /* Aumenta el padding solo en la parte inferior */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.card-title {
+  font-size: 24px; /* Aumentar el tamaño del título "Editar Materia" */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center; /* Centra los botones */
+  margin-top: 20px;
+  gap: 40px; /* Mayor espacio entre los botones */
+}
+
+.submit-button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: #4caf50; /* Verde */
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: 1px solid black; /* Borde negro delgado */
+}
+
+.cancel-button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: #f44336; /* Rojo */
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: 1px solid black; /* Borde negro delgado */
+}
+
+.submit-button:hover {
+  background-color: #45a049; /* Verde más oscuro al pasar el mouse */
+  transform: translateY(-2px);
+  color: black; /* Color de texto negro al pasar el mouse sobre "Guardar Cambios" */
+  border: none; /* Quitar el borde al pasar el mouse sobre "Guardar Cambios" */
+}
+
+.cancel-button:hover {
+  background-color: #d32f2f; /* Rojo más oscuro al pasar el mouse */
+  transform: translateY(-2px);
+  color: black; /* Color de texto negro al pasar el mouse sobre "Cancelar" */
+  border: none; /* Quitar el borde al pasar el mouse sobre "Cancelar" */
+}
+
+.loading-message {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+}
+
+.cod-materia {
+  margin-bottom: 15px; /* Espaciado inferior para separar del siguiente campo */
+  font-size: 18px; /* Tamaño de fuente */
+}
+
+.cod-materia-value {
+  font-size: 20px; /* Tamaño de fuente un poco más grande para el código */
+  color: black; /* Color negro para el código de la materia */
+  font-weight: normal; /* Eliminar el negrita */
+}
+
+.modificar-materia-container {
+  padding-bottom: 300px; /* Ajusta este valor según sea necesario */
+}

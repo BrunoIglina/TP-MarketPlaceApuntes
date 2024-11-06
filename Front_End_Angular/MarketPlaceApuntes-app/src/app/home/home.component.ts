@@ -1,24 +1,30 @@
+// home.component.ts
 import { Component, OnInit } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeService } from './home.service';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NoteDetailComponent } from '../note-detail/note-detail.component';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { NoteService } from './homeService'; // Importa el servicio
+import { NoteService } from './homeService'; 
 
 @Component({
   selector: 'app-home',
-  standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [CommonModule, FormsModule, RouterModule, NoteDetailComponent]
+  standalone: true,
+  imports: [HttpClientModule, CommonModule]
 })
 export class HomeComponent implements OnInit {
-  searchTerm: string = '';
-  currentPage: number = 1;
-  itemsPerPage: number = 5;
-  selectedSubject: any = null;
-  selectedNote: any | null = null; 
+  years: number[] = [1, 2, 3, 4, 5];
+  subjectsByYear: { [key: number]: any[] } = {};
   expandedYear: number | null = null;
+  selectedSubject: any = null;
+  confirmSubjectId: number | null = null;
+  subjectNotes: any[] = []; 
+
   previousScrollPosition: number = 0;
 
 
@@ -77,14 +83,34 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  toggleYear(year: number) {
+
+  constructor(private homeService: HomeService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.getSubjects();
+  }
+
+  getSubjects(): void {
+    this.homeService.getSubjects().subscribe((data: any[]) => {
+      console.log('Materias obtenidas:', data);
+      this.subjectsByYear = this.groupSubjectsByYear(data);
+      console.log('Materias agrupadas por año:', this.subjectsByYear);
+    });
+  }
+
+  private groupSubjectsByYear(subjects: any[]): { [key: number]: any[] } {
+    return subjects.reduce((acc, subject) => {
+      const year = subject.nivel_carrera;
+      if (!acc[year]) {
+        acc[year] = [];
+      }
+      acc[year].push(subject);
+      return acc;
+    }, {} as { [key: number]: any[] });
+  }
+
+  toggleYear(year: number): void {
     this.expandedYear = this.expandedYear === year ? null : year;
-  }
-
-  getSubjectsForYear(year: number) {
-    return this.subjects.filter(subject => subject.year === year && subject.name.toLowerCase().includes(this.searchTerm.toLowerCase()));
-  }
-
   selectSubject(subject: any) {
     this.selectedSubject = subject;
     this.currentPage = 1;
@@ -107,22 +133,49 @@ export class HomeComponent implements OnInit {
     } else {
       console.error('El ID del apunte no está definido:', note);
     }
+
   }
   
   
   
 
-  goBack() {
-    this.selectedNote = null;
+  getSubjectsForYear(year: number): any[] {
+    return this.subjectsByYear[year] || [];
   }
 
-  resetHome() {
-    this.selectedSubject = null;
-    this.selectedNote = null;
-    this.currentPage = 1;
-    this.updatePagination();
+  selectSubject(subject: any): void {
+    this.selectedSubject = subject; // Almacenar la materia seleccionada
+    this.loadSubjectNotes(subject.cod_materia); // Cargar apuntes de la materia seleccionada
   }
 
+  private loadSubjectNotes(subjectId: number): void {
+    this.homeService.getSubjectNotes(subjectId).subscribe(
+      (notes: any[]) => {
+        this.subjectNotes = notes; // Almacenar los apuntes
+        console.log('Apuntes de la materia:', this.subjectNotes);
+      },
+      (error) => {
+        console.error('Error al obtener apuntes:', error);
+        Swal.fire('Error', 'No se pudieron cargar los apuntes de la materia.', 'error');
+      }
+    );
+  }
+
+  confirmDelete(subjectId: number): void {
+    Swal.fire({
+      title: '¿Está seguro?',
+      text: "Esta acción no se puede deshacer.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#dc3545',
+      cancelButtonColor: '#6c757d',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'No, cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deleteSubject(subjectId);
+      }
+    });
   getNotesForSubject(subject: any) {
     return this.selectedSubjectNotes; 
   }
@@ -138,24 +191,34 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  nextPage() {
-    if (this.currentPage < this.totalPages()) {
-      this.currentPage++;
-      this.updatePagination();
-    }
+  deleteSubject(subjectId: number): void {
+    console.log('Eliminando materia con ID:', subjectId);
+    this.homeService.deleteSubject(subjectId).subscribe(
+      () => {
+        this.getSubjects();
+        Swal.fire('Eliminado', 'La materia ha sido eliminada.', 'success');
+      },
+      (error) => {
+        console.error('Error al eliminar la materia:', error);
+        Swal.fire('Error', 'No se pudo eliminar la materia.', 'error');
+      }
+    );
   }
 
-  prevPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.updatePagination();
-    }
+  editSubject(subjectId: number): void {
+    console.log('Editar materia con ID:', subjectId);
+    this.router.navigate(['/modificar-materia', subjectId]);
   }
 
-  totalPages() {
-    if (this.selectedSubject) {
-      return Math.ceil(this.getNotesForSubject(this.selectedSubject).length / this.itemsPerPage);
-    }
-    return 0;
+  resetHome(): void {
+    this.selectedSubject = null;
+    this.subjectNotes = []; 
   }
 }
+
+
+
+
+
+
+

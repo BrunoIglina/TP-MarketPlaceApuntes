@@ -5,8 +5,10 @@
     <h1 class="mainTitle" (click)="onHomeClick()"> 
         LOS APUNTES DE BENTAN
     </h1>
-    
+
     <div class="dropdown-container">
+        <button class="create-button" (click)="onCreateMateriaClick()">Crear materia</button> <!-- Botón de Crear materia -->
+        
         <div class="dropdown">
             <button class="dropdown-button">Mi Perfil</button>
             <div class="dropdown-content miperfil-content">
@@ -14,7 +16,7 @@
                 <a (click)="onLogoutClick()">Cerrar Sesión</a>
             </div>
         </div>
-  
+        
         <div class="dropdown">
             <button class="dropdown-button">Mis Apuntes</button>
             <div class="dropdown-content">
@@ -24,3 +26,4 @@
         </div>
     </div>
 </div>
+

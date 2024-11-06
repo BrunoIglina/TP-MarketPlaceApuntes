@@ -14,11 +14,14 @@ import { MatCardModule } from '@angular/material/card';
 import { ApunteCompradoComponent } from './apunte-comprado/apunte-comprado.component';
 import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { ModificarMateriaComponent } from './modificar-materia/modificar-materia.component';
+import { AgregarMateriaComponent } from './agregar-materia/agregar-materia.component';
 import { CargarApunteComponent } from './cargar-apunte/cargar-apunte.component';
 import { EdicionApunteComponent } from './edicion-apunte/edicion-apunte.component';
 import { CompraApunteComponent } from './compra-apunte/compra-apunte.component';
 import { AppSucessComponent } from './app-sucess/app-sucess.component';
 import { MercadoPagoComponent } from './mercado-pago/mercado-pago.component';
+
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -37,6 +40,8 @@ export const routes: Routes = [
   { path: 'apunte-comprado/:id', component: ApunteCompradoComponent },
   { path: 'sobre-nosotros', component: SobreNosotrosComponent },
   { path: 'contacto', component: ContactoComponent},
+  { path: 'modificar-materia/:id', component: ModificarMateriaComponent },
+  { path: 'agregar-materia', component: AgregarMateriaComponent },
   { path: 'cargar-apunte', component: CargarApunteComponent},
   {path: 'edicionApunte/:id', component: EdicionApunteComponent},
   {path: 'compra-apunte/:id', component: CompraApunteComponent},

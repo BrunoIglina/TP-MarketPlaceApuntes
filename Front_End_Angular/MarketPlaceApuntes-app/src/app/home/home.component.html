@@ -1,37 +1,35 @@
+<!-- home.component.html -->
 <div class="home-container">
-  <div class="sidebar" *ngIf="!selectedNote">
+  <div class="sidebar">
     <div *ngFor="let year of years">
       <h2 [class.expanded]="expandedYear === year" (click)="toggleYear(year)">
         Año {{ year }}
       </h2>
       <ul [class.expanded]="expandedYear === year">
         <li *ngFor="let subject of getSubjectsForYear(year)">
-          <a (click)="selectSubject(subject)">{{ subject.name }}</a>
+          <a (click)="selectSubject(subject)">{{ subject.nombre_materia }}</a>
+          <div class="button-group">
+            <button (click)="editSubject(subject.cod_materia)" class="edit-button">Modificar</button>
+            <button (click)="confirmDelete(subject.cod_materia)" class="delete-button">Borrar</button>
+          </div>
         </li>
       </ul>
     </div>
   </div>
 
-  <div class="content" *ngIf="!selectedNote">
+  <div class="content">
     <div *ngIf="selectedSubject">
-      <h3>Apuntes para {{ selectedSubject.name }}</h3>
-      <div *ngFor="let note of paginatedNotes" class="note">
-        <img [src]="note.cover" alt="{{ note.title }}">
-        <div class="details">
-          <h4>{{ note.title }}</h4>
-          <p>{{ note.description }}</p>
-          <p><strong>Precio: $</strong> {{ note.price }}</p>
-          <button (click)="selectNote(note)">Ver Detalles</button>
-        </div>
-      </div>
-
-      <div class="pagination">
-        <button (click)="prevPage()" [disabled]="currentPage === 1">Anterior</button>
-        <span>Página {{currentPage}} de {{totalPages()}}</span>
-        <button (click)="nextPage()" [disabled]="currentPage === totalPages()">Siguiente</button>
+      <h3>Detalles de la materia: {{ selectedSubject.nombre_materia }}</h3>
+      <div *ngFor="let note of subjectNotes" class="note">
+        <h4>{{ note.titulo }}</h4>
+        <p>{{ note.descripcion }}</p>
       </div>
     </div>
   </div>
-
-  <app-note-detail *ngIf="selectedNote" [note]="selectedNote" (back)="goBack()"></app-note-detail>
 </div>
+
+
+
+
+
+
