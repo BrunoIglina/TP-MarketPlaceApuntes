@@ -22,6 +22,7 @@ export function confirmLogout(router: Router): Promise<boolean> {
     cancelButtonText: 'No, cancelar'
   }).then((result) => {
     if (result.isConfirmed) {
+      localStorage.removeItem('authToken'); // Limpiar el localStorage
       return router.navigate(['/login']).then(() => true);
     } else {
       return Promise.resolve(false);

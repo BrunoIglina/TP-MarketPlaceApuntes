@@ -20,12 +20,15 @@ export class CompradoComponent implements OnInit {
   apuntes: any[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 3; 
-  numeroAlumno: number = 1; 
+  numeroAlumno: number = 0; 
   defaultImage: string = '../../assets/AM1.jpg';
 
   constructor(private compradoService: CompradoService, private router: Router, private dialog: MatDialog) {} 
 
   ngOnInit() {
+    
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    this.numeroAlumno = usuario.numero_usuario;
     this.loadComprados();
   }
   
@@ -88,7 +91,7 @@ export class CompradoComponent implements OnInit {
               text: 'La calificación se ha aplicado correctamente.',
               confirmButtonText: 'Aceptar'
             }).then(() => {
-              this.loadComprados(); // Recargar los apuntes después de calificar
+              this.loadComprados(); 
             });
           }, error => {
             console.error('Error al guardar la calificación:', error);

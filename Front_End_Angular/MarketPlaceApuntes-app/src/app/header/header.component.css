@@ -9,6 +9,7 @@
 .logo {
     width: 50px;
     height: auto;
+    cursor: pointer; 
 }
 
 .mainTitle {
@@ -23,6 +24,7 @@
     letter-spacing: 2px;
     border-bottom: 2px solid #cccccc;
     padding-bottom: 10px;
+    cursor: pointer; 
 }
 
 .header-container {
@@ -34,7 +36,7 @@
 }
 
 .logo {
-    width: 50px;
+    width: 100px;
     height: auto;
 }
 

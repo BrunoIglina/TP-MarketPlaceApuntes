@@ -7,10 +7,8 @@ import { LoginComponent } from './login/login.component';
 import { RecoverPassComponent } from './recover-pass/recover-pass.component';
 import { FooterComponent } from './footer/footer.component';
 import { EnterTokenComponent } from './enter-token/enter-token.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NoteDetailComponent } from './note-detail/note-detail.component';
 import { NgModule } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
 import { ApunteCompradoComponent } from './apunte-comprado/apunte-comprado.component';
 import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 import { ContactoComponent } from './contacto/contacto.component';
@@ -21,32 +19,36 @@ import { EdicionApunteComponent } from './edicion-apunte/edicion-apunte.componen
 import { CompraApunteComponent } from './compra-apunte/compra-apunte.component';
 import { AppSucessComponent } from './app-sucess/app-sucess.component';
 import { MercadoPagoComponent } from './mercado-pago/mercado-pago.component';
+import { AltaAlumnoComponent } from './alta-alumno/alta-alumno.component';
+import { AuthGuard } from './auth.guard';
+import { LoginAdminComponent } from './login-admin/login-admin.component';
 
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'comprado', component: CompradoComponent },
-  { path: 'comprado/:id', component: CompradoComponent },
-  { path: 'publicado', component: PublicadoComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'comprado', component: CompradoComponent, canActivate: [AuthGuard] },
+  { path: 'comprado/:id', component: CompradoComponent, canActivate: [AuthGuard] },
+  { path: 'publicado', component: PublicadoComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'recover-pass', component: RecoverPassComponent },
   { path: 'enter-token', component: EnterTokenComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
-  { path: 'footer', component: FooterComponent },
-  { path: 'note-detail', component: NoteDetailComponent },
-  { path: 'note-detail/:id', component: NoteDetailComponent },
-  { path: 'apunte-comprado/:id', component: ApunteCompradoComponent },
-  { path: 'sobre-nosotros', component: SobreNosotrosComponent },
-  { path: 'contacto', component: ContactoComponent},
-  { path: 'modificar-materia/:id', component: ModificarMateriaComponent },
-  { path: 'agregar-materia', component: AgregarMateriaComponent },
-  { path: 'cargar-apunte', component: CargarApunteComponent},
-  {path: 'edicionApunte/:id', component: EdicionApunteComponent},
-  {path: 'compra-apunte/:id', component: CompraApunteComponent},
-  { path: 'success', component: AppSucessComponent },
-  { path: 'mercado-pago', component: MercadoPagoComponent}
+  { path: 'footer', component: FooterComponent, canActivate: [AuthGuard] },
+  { path: 'note-detail', component: NoteDetailComponent, canActivate: [AuthGuard] },
+  { path: 'note-detail/:id', component: NoteDetailComponent, canActivate: [AuthGuard] },
+  { path: 'apunte-comprado/:id', component: ApunteCompradoComponent, canActivate: [AuthGuard] },
+  { path: 'sobre-nosotros', component: SobreNosotrosComponent, canActivate: [AuthGuard] },
+  { path: 'contacto', component: ContactoComponent, canActivate: [AuthGuard]},
+  { path: 'modificar-materia/:id', component: ModificarMateriaComponent, canActivate: [AuthGuard] },
+  { path: 'agregar-materia', component: AgregarMateriaComponent, canActivate: [AuthGuard] },
+  { path: 'cargar-apunte', component: CargarApunteComponent, canActivate: [AuthGuard]},
+  {path: 'edicionApunte/:id', component: EdicionApunteComponent, canActivate: [AuthGuard]},
+  {path: 'compra-apunte/:id', component: CompraApunteComponent, canActivate: [AuthGuard]},
+  { path: 'success', component: AppSucessComponent, canActivate: [AuthGuard] },
+  { path: 'mercado-pago', component: MercadoPagoComponent, canActivate: [AuthGuard]},
+  { path: 'alta-alumno', component: AltaAlumnoComponent},
+  { path: 'login-admin', component: LoginAdminComponent },
   //{ path: '**', redirectTo: 'home' },
 ];
 

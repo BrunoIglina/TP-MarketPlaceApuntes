@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { LoginService } from './login.service';
+import { LoginService } from '../login/login.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-login-admin',
   standalone: true,
   imports: [FormsModule, RouterModule],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login-admin.component.html',
+  styleUrls: ['./login-admin.component.css']
 })
-export class LoginComponent {
+export class LoginAdminComponent {
   loginData = { legajo: '', password: '' };
 
   constructor(private router: Router, private loginService: LoginService) {}
@@ -19,7 +19,6 @@ export class LoginComponent {
   validarInicio(): void {
     this.loginService.login(this.loginData.legajo, this.loginData.password).subscribe(
       response => {
-        
         localStorage.setItem('authToken', response.token);
         localStorage.setItem('usuario', JSON.stringify(response.usuario));
         this.router.navigate(['/home']);
@@ -36,7 +35,7 @@ export class LoginComponent {
     );
   }
 
-  navigateToAdminLogin(): void {
-    this.router.navigate(['/login-admin']);
+  navigateToUserLogin(): void {
+    this.router.navigate(['/login']);
   }
 }

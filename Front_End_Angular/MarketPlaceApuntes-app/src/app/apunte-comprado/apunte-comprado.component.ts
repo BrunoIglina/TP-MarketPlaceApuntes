@@ -17,11 +17,13 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 })
 export class ApunteCompradoComponent implements OnInit { @Input() note: any; 
   apunte: any;
-  numeroAlumno: number = 1; 
+  numero_alumno: number = 0; 
   dialog: MatDialog;
   constructor(private noteDetailService: ApunteService, private route: ActivatedRoute, private router: Router, dialog: MatDialog) {this.dialog = dialog;}
 
   ngOnInit() {
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    this.numero_alumno = usuario.numero_usuario;
     this.loadApunte();
   }
 
@@ -51,7 +53,7 @@ export class ApunteCompradoComponent implements OnInit { @Input() note: any;
   
     dialogRef.afterClosed().subscribe((calificacion: number | null) => {
       if (calificacion !== null) {
-        this.noteDetailService.calificarApunte(this.numeroAlumno, apunteId, calificacion)
+        this.noteDetailService.calificarApunte(this.numero_alumno, apunteId, calificacion)
           .subscribe(response => {
             Swal.fire({
               icon: 'success',

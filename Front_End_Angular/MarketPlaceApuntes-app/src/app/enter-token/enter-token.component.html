@@ -1,16 +1,19 @@
 <div class="enter-token-container">
-    <div class="enter-token-box">
-      <h2>Verificar Código</h2>
-      <form (submit)="onSubmit()">
-        <div class="input-group">
-          <label for="verification-code">Código de Verificación</label>
-          <input type="text" id="verification-code" name="verification-code" [(ngModel)]="verificationCode" required>
-        </div>
-        <button type="submit" class="enter-token-button">Verificar</button>
-      </form>
-      <div class="back-to-login">
-        <a routerLink="/login">Volver al Inicio de Sesión</a>
+  <div class="enter-token-box">
+    <h2>Verificar Código</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <label for="verification-code">Código de Verificación</label>
+        <input type="text" id="verification-code" name="verification-code" [(ngModel)]="verificationCode" required>
       </div>
+      <div class="input-group">
+        <label for="new-password">Nueva Contraseña</label>
+        <input type="password" id="new-password" name="new-password" [(ngModel)]="newPassword" required>
+      </div>
+      <button type="submit" class="enter-token-button">Verificar</button>
+    </form>
+    <div class="back-to-login">
+      <a routerLink="/login">Volver al Inicio de Sesión</a>
     </div>
   </div>
-  
+</div>
