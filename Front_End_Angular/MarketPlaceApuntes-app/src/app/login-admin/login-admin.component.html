@@ -1,6 +1,6 @@
 <div class="login-container">
     <div class="login-box">
-        <h2>Iniciar Sesión</h2>
+        <h2>Iniciar Sesión Administrador</h2>
         <form (ngSubmit)="validarInicio()">
             <div class="input-group">
                 <label for="legajo">Legajo</label>
@@ -12,10 +12,6 @@
             </div>
             <button type="submit" class="login-button">Iniciar Sesión</button>
         </form>
-        <div class="links">
-            <a routerLink="/recover-pass" class="forgot-password">Olvidé mi contraseña</a>
-            <a routerLink="/alta-alumno" class="create-account">Crear cuenta</a>
-        </div>
-        <button (click)="navigateToAdminLogin()" class="admin-button">¿Sos Administrador?</button>
+        <button (click)="navigateToUserLogin()" class="back-button">Volver</button>
     </div>
 </div>

@@ -1,0 +1,54 @@
+<div class="profile-container">
+    <div class="profile-box">
+      <h2>Alta de Alumno</h2>
+      <form (ngSubmit)="onSubmit()">
+        <div class="input-group">
+          <label for="legajo">Legajo</label>
+          <div class="input-wrapper">
+            <input type="text" id="legajo" placeholder="Ingresa tu legajo" [(ngModel)]="legajo" name="legajo" required>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="nombreUsuario">Nombre de Usuario</label>
+          <div class="input-wrapper">
+            <input type="text" id="nombreUsuario" placeholder="Ingresa tu nombre de usuario" [(ngModel)]="nombreUsuario" name="nombreUsuario" required>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="nombreApellido">Nombre y Apellido</label>
+          <div class="input-wrapper">
+            <input type="text" id="nombreApellido" placeholder="Ingresa tu nombre y apellido" [(ngModel)]="nombreApellido" name="nombreApellido" required>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="email">Correo Electrónico</label>
+          <div class="input-wrapper">
+            <input type="email" id="email" placeholder="Ingresa tu correo electrónico" [(ngModel)]="email" name="email" required>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="telefono">Teléfono</label>
+          <div class="input-wrapper">
+            <input type="tel" id="telefono" placeholder="Ingresa tu teléfono" [(ngModel)]="telefono" name="telefono" required>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="contrasena">Contraseña</label>
+          <div class="input-wrapper">
+            <input type="password" id="contrasena" placeholder="Ingresa tu contraseña" [(ngModel)]="contrasena" name="contrasena" required>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="cvu">CVU</label>
+          <div class="input-wrapper">
+            <input type="text" id="cvu" placeholder="Ingresa tu CVU" [(ngModel)]="cvu" name="cvu" required>
+          </div>
+        </div>
+        <div class="button-group">
+          <button type="submit" class="save-button">Crear Alumno</button>
+          <button type="button" class="cancel-button" routerLink="/home">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

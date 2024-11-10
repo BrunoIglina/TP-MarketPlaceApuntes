@@ -6,8 +6,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
+import { MatSelectModule } from '@angular/material/select';
 import { PublicadoService } from '../publicado/publicado.service';
 import Swal from 'sweetalert2'; 
+import { HomeService } from '../home/home.service';
 
 @Component({
   selector: 'app-cargar-apunte',
@@ -18,6 +20,7 @@ import Swal from 'sweetalert2';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     ReactiveFormsModule
   ],
   templateUrl: './cargar-apunte.component.html',
@@ -29,11 +32,13 @@ export class CargarApunteComponent {
   archivoCaratula: File | null = null;
   fileErrorPdf: string | null = null;
   fileErrorJpg: string | null = null;
-  private readonly numeroAlumno = 1;
+   numeroAlumno : number = 0;
+   materias : any[] = [];
 
   constructor(
     private fb: FormBuilder,
     private publicadoService: PublicadoService,
+    private homeService: HomeService,
     private router: Router
   ) {
     this.apunteForm = this.fb.group({
@@ -43,7 +48,17 @@ export class CargarApunteComponent {
       monto_precio: [0, Validators.required]
     });
   }
-
+  ngOnInit(): void {
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    this.numeroAlumno = usuario.numero_usuario;this.homeService.getSubjects().subscribe(
+      (data) => {
+        this.materias = data;
+      },
+      (error) => {
+        console.error('Error al obtener las materias: ', error);
+      }
+    );
+  }
   onFileSelect(event: Event, type: 'pdf' | 'jpg'): void {
     const target = event.target as HTMLInputElement;
     const file = target?.files?.[0];

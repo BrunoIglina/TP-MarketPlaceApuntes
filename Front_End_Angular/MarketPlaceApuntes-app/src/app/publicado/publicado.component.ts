@@ -17,13 +17,15 @@ export class PublicadoComponent implements OnInit {
   apuntes: any[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 3; 
-  numeroAlumno: number = 1; 
+  numeroAlumno: number = 0; 
   defaultImage: string = '../../assets/AM1.jpg';
   
 
   constructor(private publicadoService: PublicadoService, private router: Router) {} 
 
   ngOnInit() {
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    this.numeroAlumno = usuario.numero_usuario;
     this.loadComprados();
   }
   

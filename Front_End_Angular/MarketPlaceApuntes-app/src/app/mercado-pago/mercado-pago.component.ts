@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NoteService } from '../home/homeService'; 
+import { HomeService } from '../home/home.service'; 
 import { NoteDetailService } from '../note-detail/note-detail.service'; 
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -19,7 +19,7 @@ export class MercadoPagoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private noteService: NoteService,
+    private noteService: HomeService,
     private noteDetailService: NoteDetailService
   ) {}
 

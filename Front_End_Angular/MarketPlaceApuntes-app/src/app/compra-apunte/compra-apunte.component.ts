@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NoteService } from '../home/homeService'; 
+import { HomeService } from '../home/home.service'; 
 import { NoteDetailService } from '../note-detail/note-detail.service'; 
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -17,18 +17,20 @@ import Swal from 'sweetalert2';
 export class CompraApunteComponent implements OnInit {
   apunte: any;
   precio: any; 
-  readonly numero_alumno = 1; 
+  numero_alumno : number = 0; 
   @Input() noteId!: number; 
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private noteService: NoteService,
+    private noteService: HomeService,
     private noteDetailService: NoteDetailService,
     private compraService: CompraService
   ) {}
 
   ngOnInit(): void {
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    this.numero_alumno = usuario.numero_usuario;
     const id = this.noteId || +this.route.snapshot.paramMap.get('id')!;
     if (id) {
       this.cargarApunte(id);

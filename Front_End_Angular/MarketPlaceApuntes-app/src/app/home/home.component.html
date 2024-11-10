@@ -6,7 +6,7 @@
       </h2>
       <ul [class.expanded]="expandedYear === year">
         <li *ngFor="let subject of getSubjectsForYear(year)">
-          <a (click)="selectSubject(subject)">{{ subject.nombre_materia }}</a>
+          <a class="materia" (click)="selectSubject(subject)">{{ subject.nombre_materia }}</a>
           <div class="button-group">
             <button (click)="editSubject(subject.cod_materia)" class="edit-button">Modificar</button>
             <button (click)="confirmDelete(subject.cod_materia)" class="delete-button">Borrar</button>

@@ -18,6 +18,10 @@ export class AppComponent implements OnInit {
   isAuthenticated: boolean = false;
   authChecked: boolean = false;
   isLoginRoute: boolean = false;
+  isAltaAlumnoRoute: boolean = false;
+  isRecoverPassRoute: boolean = false;
+  isEnterTokenRoute: boolean = false;
+  isResetPasswordRoute: boolean = false
 
   constructor(private router: Router) {}
 
@@ -27,6 +31,9 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.isLoginRoute = this.router.url === '/login';
+        this.isAltaAlumnoRoute = this.router.url === '/alta-alumno';
+        this.isRecoverPassRoute = this.router.url === '/recover-pass';
+        this.isEnterTokenRoute = this.router.url === '/enter-token';
         this.updateAuthStatus();
       }
     });
