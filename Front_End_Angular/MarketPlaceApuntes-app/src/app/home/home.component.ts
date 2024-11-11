@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 10;
   defaultImage: string = '../../assets/AM1.jpg';
+  rol_usuario: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +35,8 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    this.rol_usuario = usuario.rol_usuario; 
     this.route.queryParams.subscribe(params => {
       if (params['reset'] === 'true') {
         this.resetHome();

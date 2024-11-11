@@ -38,10 +38,7 @@ export class ApunteCompradoComponent implements OnInit { @Input() note: any;
       });
     }
   }
-  editarApunte() {
-  
-    console.log('Editar apunte:', this.apunte);
-  }
+ 
   
   
   

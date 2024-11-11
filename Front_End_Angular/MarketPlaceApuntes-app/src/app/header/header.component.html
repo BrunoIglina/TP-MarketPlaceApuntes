@@ -7,7 +7,7 @@
     </h1>
 
     <div class="dropdown-container">
-        <button class="create-button" (click)="onCreateMateriaClick()">Crear materia</button> <!-- Botón de Crear materia -->
+        <button *ngIf="rol_usuario === 'Administrador'" class="create-button" (click)="onCreateMateriaClick()">Crear materia</button> <!-- Botón de Crear materia -->
         
         <div class="dropdown">
             <button class="dropdown-button">Mi Perfil</button>
@@ -18,7 +18,7 @@
         </div>
         
         <div class="dropdown">
-            <button class="dropdown-button">Mis Apuntes</button>
+            <button *ngIf="rol_usuario === 'Alumno'" class="dropdown-button">Mis Apuntes</button>
             <div class="dropdown-content">
                 <a routerLink="/comprado">Comprados</a>
                 <a routerLink="/publicado">Publicados</a>

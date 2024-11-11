@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
@@ -11,10 +11,16 @@ import { RouterModule } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   @Input() autenticado: boolean = false;
+  rol_usuario: string = ''; 
 
   constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    this.rol_usuario = usuario.rol_usuario; 
+  }
 
   onLogoutClick() {
     Swal.fire({
