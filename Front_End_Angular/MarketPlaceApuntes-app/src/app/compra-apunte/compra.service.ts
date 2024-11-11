@@ -8,6 +8,7 @@
   export class CompraService {
     private apiUrl = 'http://localhost:3000/api/compras'; 
     private apiUrl2 = 'http://localhost:3000/api/mercadopago';
+    private apiUrl3 = 'http://localhost:3000/api/apuntes';
 
     constructor(private http: HttpClient) {}
 
@@ -20,5 +21,9 @@
     }
     verificarCompra(numeroAlumno: number, apunteId: number): Observable<any> {
       return this.http.get<any>(`${this.apiUrl}/${numeroAlumno}/${apunteId}`);
+    }
+
+    deleteApunte(id: number, numeroAdmin: number): Observable<any> {
+      return this.http.delete(`${this.apiUrl3}/${id}/${numeroAdmin}`);
     }
   }

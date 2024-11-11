@@ -32,20 +32,24 @@ export class PublicadoComponent implements OnInit {
   loadComprados() {
     this.publicadoService.getPublicados(this.numeroAlumno).subscribe(
       (apuntes: any[]) => {
-        const priceRequests = apuntes.map(apunte =>
-          this.publicadoService.getPrecioByApunteId(apunte.id_apunte).pipe(
-            map(precio => ({
+        const requests = apuntes.map(apunte =>
+          forkJoin({
+            precio: this.publicadoService.getPrecioByApunteId(apunte.id_apunte),
+            compras: this.publicadoService.getComprasByApunteId(apunte.id_apunte)
+          }).pipe(
+            map(({ precio, compras }) => ({
               ...apunte,
-              precio: precio?.monto_precio || 'Sin precio'
+              precio: precio?.monto_precio || 'Sin precio',
+              compras: compras || 0
             }))
           )
         );
   
-        forkJoin(priceRequests).subscribe(
-          apuntesConPrecio => {
-            this.apuntes = apuntesConPrecio;
+        forkJoin(requests).subscribe(
+          apuntesConDatos => {
+            this.apuntes = apuntesConDatos;
           },
-          error => console.error('Error al cargar los precios', error)
+          error => console.error('Error al cargar los datos', error)
         );
       },
       error => console.error('Error al cargar apuntes', error)

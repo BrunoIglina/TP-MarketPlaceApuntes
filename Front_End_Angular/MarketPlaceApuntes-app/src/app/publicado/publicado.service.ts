@@ -9,6 +9,8 @@ import { map } from 'rxjs/operators';
     private apiUrl = 'http://localhost:3000/api/apuntes/alumnos'; 
     private apiUrl2 = 'http://localhost:3000/api/apuntes'; 
     private apiUrlPrecio = 'http://localhost:3000/api/precios';
+    private apiUrlCompras = 'http://localhost:3000/api/compras/apuntes/contar';
+
   
     constructor(private http: HttpClient) {}
   
@@ -28,5 +30,9 @@ import { map } from 'rxjs/operators';
       return this.http.get<any>(`${this.apiUrlPrecio}/${apunteId}`);
     }
 
-
+    getComprasByApunteId(apunteId: number): Observable<number> {
+      return this.http.get<{ count: number }>(`${this.apiUrlCompras}/${apunteId}`).pipe(
+        map(response => response.count)
+      );
+    }
   }

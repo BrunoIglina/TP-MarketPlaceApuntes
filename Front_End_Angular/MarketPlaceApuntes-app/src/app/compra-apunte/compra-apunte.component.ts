@@ -6,19 +6,22 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { CompraService } from './compra.service';
 import Swal from 'sweetalert2';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-compra-apunte',
   templateUrl: './compra-apunte.component.html',
   standalone: true,
-  imports: [CommonModule, MatCardModule],
+  imports: [CommonModule, MatCardModule, MatIconModule],
   styleUrls: ['./compra-apunte.component.css']
 })
 export class CompraApunteComponent implements OnInit {
   apunte: any;
   precio: any; 
   numero_alumno : number = 0; 
+  rol_usuario: string = '';
   @Input() noteId!: number; 
+  private readonly numeroAdmin: number = 1;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +34,7 @@ export class CompraApunteComponent implements OnInit {
   ngOnInit(): void {
     const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
     this.numero_alumno = usuario.numero_usuario;
+    this.rol_usuario = usuario.rol_usuario;
     const id = this.noteId || +this.route.snapshot.paramMap.get('id')!;
     if (id) {
       this.cargarApunte(id);
@@ -61,6 +65,16 @@ export class CompraApunteComponent implements OnInit {
   }
 
   comprar(): void {
+    if (this.numero_alumno === this.apunte.numero_alumno) {
+      Swal.fire({
+        title: 'Error',
+        text: 'No puedes comprar tu propio apunte.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      return;
+    }
+
     Swal.fire({
       title: 'Confirmación',
       text: 'Será redirigido a MercadoPago y deberá apretar el botón comprar nuevamente. ¿Desea continuar?',
@@ -120,4 +134,40 @@ export class CompraApunteComponent implements OnInit {
       }
     );
   }
-}  
+
+  borrarApunte(): void {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Esta acción eliminará el apunte y sancionará al alumno.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.compraService.deleteApunte(this.apunte.id_apunte, this.numeroAdmin).subscribe(
+          response => {
+            console.log('Apunte eliminado', response);
+            Swal.fire({
+              title: 'Eliminado',
+              text: 'El apunte ha sido eliminado y el alumno sancionado correctamente.',
+              icon: 'success',
+              confirmButtonText: 'Aceptar'
+            }).then(() => {
+              this.router.navigate(['/home']); 
+            });
+          },
+          error => {
+            console.error('Error al eliminar el apunte', error);
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un problema al eliminar el apunte.',
+              icon: 'error',
+              confirmButtonText: 'Aceptar'
+            });
+          }
+        );
+      }
+    });
+  }
+}
