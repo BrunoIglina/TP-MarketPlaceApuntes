@@ -47,9 +47,7 @@ export class HomeComponent implements OnInit {
 
   getSubjects(): void {
     this.homeService.getSubjects().subscribe((data: any[]) => {
-      console.log('Materias obtenidas:', data);
       this.subjectsByYear = this.groupSubjectsByYear(data);
-      console.log('Materias agrupadas por año:', this.subjectsByYear);
     });
   }
 
@@ -92,7 +90,6 @@ export class HomeComponent implements OnInit {
         forkJoin(priceRequests).subscribe(
           notesWithPrices => {
             this.subjectNotes = notesWithPrices;
-            console.log('Apuntes de la materia:', this.subjectNotes);
             this.updatePagination();
           },
           error => console.error('Error al cargar los precios', error)
@@ -152,7 +149,6 @@ export class HomeComponent implements OnInit {
   }
 
   deleteSubject(subjectId: number): void {
-    console.log('Eliminando materia con ID:', subjectId);
     this.homeService.deleteSubject(subjectId).subscribe(
       () => {
         this.getSubjects();
@@ -166,7 +162,6 @@ export class HomeComponent implements OnInit {
   }
 
   editSubject(subjectId: number): void {
-    console.log('Editar materia con ID:', subjectId);
     this.router.navigate(['/modificar-materia', subjectId]);
   }
 

@@ -28,7 +28,6 @@ export class MercadoPagoComponent implements OnInit {
       this.preferenceId = params.get('preferenceId');
       const apunteId = params.get('apunteId');
       if (this.preferenceId && apunteId) {
-        console.log('Preference ID recibido:', this.preferenceId);
         this.loadMercadoPago(this.preferenceId);
         this.cargarApunte(+apunteId);
       } else {
@@ -64,7 +63,6 @@ export class MercadoPagoComponent implements OnInit {
     const script = document.createElement('script');
     script.src = 'https://sdk.mercadopago.com/js/v2';
     script.onload = () => {
-      console.log('Script de Mercado Pago cargado');
       const mp = new (window as any).MercadoPago('APP_USR-73c3246d-42bc-45d8-993e-04e89916a65d', {
         locale: 'es-AR'
       });
@@ -74,7 +72,6 @@ export class MercadoPagoComponent implements OnInit {
           preferenceId: preferenceId,
         },
       }).then(() => {
-        console.log('Widget de Mercado Pago inicializado');
       }).catch((error: any) => {
         console.error('Error al inicializar el widget de Mercado Pago:', error);
       });

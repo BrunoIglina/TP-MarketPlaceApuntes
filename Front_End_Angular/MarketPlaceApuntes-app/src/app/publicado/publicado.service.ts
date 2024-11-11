@@ -12,7 +12,6 @@ import { map } from 'rxjs/operators';
   
     constructor(private http: HttpClient) {}
   
-   
     getPublicados(numeroAlumno: number): Observable<any[]> {
       return this.http.get<any[]>(`${this.apiUrl}/${numeroAlumno}`);
     }
