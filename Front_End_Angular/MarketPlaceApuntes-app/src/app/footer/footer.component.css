@@ -1,3 +1,26 @@
+/* Estilo del footer */
+.footer-container {
+  background-color: #333;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.nav-link {
+  color: lightgray;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+footer {
+  margin-top: auto;
+  padding: 10px 0;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -16,12 +39,3 @@ body {
   flex-direction: column;
 }
 
-.nav-link {
-  color: lightgray;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.nav-link:hover {
-  text-decoration: underline;
-}

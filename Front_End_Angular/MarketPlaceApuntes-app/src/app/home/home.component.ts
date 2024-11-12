@@ -15,7 +15,7 @@ import { map } from 'rxjs/operators';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   standalone: true,
-  imports: [HttpClientModule, CommonModule, FormsModule, MatCardModule, CarouselModule]
+  imports: [HttpClientModule, CommonModule, FormsModule, MatCardModule]
 })
 export class HomeComponent implements OnInit {
   years: number[] = [1, 2, 3, 4, 5];
