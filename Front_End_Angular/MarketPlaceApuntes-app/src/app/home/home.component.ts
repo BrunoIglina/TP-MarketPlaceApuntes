@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
     this.rol_usuario = usuario.rol_usuario; 
+    console.log('Usuario del localStorage:', usuario);
     this.route.queryParams.subscribe(params => {
       if (params['reset'] === 'true') {
         this.resetHome();
@@ -46,6 +47,7 @@ export class HomeComponent implements OnInit {
       }
     });
     this.getSubjects();
+    
   }
 
   getSubjects(): void {
