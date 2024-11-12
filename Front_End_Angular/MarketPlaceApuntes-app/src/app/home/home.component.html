@@ -8,8 +8,8 @@
         <li *ngFor="let subject of getSubjectsForYear(year)">
           <a class="materia" (click)="selectSubject(subject)">{{ subject.nombre_materia }}</a>
           <div class="button-group">
-            <button (click)="editSubject(subject.cod_materia)" class="edit-button">Modificar</button>
-            <button (click)="confirmDelete(subject.cod_materia)" class="delete-button">Borrar</button>
+            <button *ngIf="rol_usuario === 'Administrador'" (click)="editSubject(subject.cod_materia)" class="edit-button">Modificar</button>
+            <button *ngIf="rol_usuario === 'Administrador'" (click)="confirmDelete(subject.cod_materia)" class="delete-button">Borrar</button>
           </div>
         </li>
       </ul>
@@ -52,5 +52,3 @@
         <button mat-button class="ml-button" (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= subjectNotes.length">Siguiente</button>
       </div>
     </div>
-  </div>
-</div>

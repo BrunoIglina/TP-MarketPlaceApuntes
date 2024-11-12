@@ -8,13 +8,15 @@ import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   standalone: true,
-  imports: [HttpClientModule, CommonModule, FormsModule, MatCardModule]
+  imports: [HttpClientModule, CommonModule, FormsModule, MatCardModule, CarouselModule]
 })
 export class HomeComponent implements OnInit {
   years: number[] = [1, 2, 3, 4, 5];
@@ -23,9 +25,33 @@ export class HomeComponent implements OnInit {
   selectedSubject: any = null;
   subjectNotes: any[] = [];
   paginatedNotes: any[] = [];
+  allNotes: any[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 10;
   defaultImage: string = '../../assets/AM1.jpg';
+  rol_usuario: string = '';
+  customOptions: OwlOptions = {
+    loop: true,
+    margin: 10,
+    nav: true,
+    dots: true,
+    responsive: {
+      0: {
+        items: 1,
+        nav: true
+      },
+      600: {
+        items: 2,
+        nav: true
+      },
+      1000: {
+        items: 3,
+        nav: true
+      }
+    }
+  };
+  
+  
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +60,8 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    this.rol_usuario = usuario.rol_usuario; 
     this.route.queryParams.subscribe(params => {
       if (params['reset'] === 'true') {
         this.resetHome();
@@ -43,6 +71,7 @@ export class HomeComponent implements OnInit {
       }
     });
     this.getSubjects();
+    this.getAllNotes(); 
   }
 
   getSubjects(): void {
@@ -101,6 +130,35 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
+  getAllNotes(): void {
+    this.homeService.getAllNotes().subscribe(
+      (notes: any[]) => {
+        const priceRequests = notes.map(note =>
+          this.homeService.getPrecioByApunteId(note.id_apunte).pipe(
+            map(precio => ({
+              ...note,
+              precio: precio?.monto_precio || 'Sin precio'
+            }))
+          )
+        );
+
+        forkJoin(priceRequests).subscribe(
+          notesWithPrice => {
+            this.allNotes = notesWithPrice;
+            console.log('Todos los apuntes:', this.allNotes);
+          },
+          error => console.error('Error al cargar los precios', error)
+        );
+      },
+      error => {
+        console.error('Error al obtener todos los apuntes:', error);
+        Swal.fire('Error', 'No se pudieron cargar todos los apuntes.', 'error');
+      }
+    );
+  }
+
+  
 
   updatePagination(): void {
     if (this.selectedSubject) {

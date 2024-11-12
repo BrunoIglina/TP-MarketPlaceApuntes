@@ -37,4 +37,8 @@ export class HomeService {
   getNotesBySubjectId(subjectId: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/${subjectId}`);
   }
+
+  getAllNotes(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl3}`);
+  }
 }

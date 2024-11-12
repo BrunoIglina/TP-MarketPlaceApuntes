@@ -112,3 +112,39 @@
   cursor: not-allowed; 
 }
 
+.compras-count {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: rgba(44, 21, 172, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compras-text {
+  font-weight: bold;
+}
+
+.info-button {
+  cursor: pointer;
+  margin-left: auto;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.info-icon {
+  width: 24px;
+  height: 24px;
+  border: 2px solid black; 
+  border-radius: 4px; 
+}
+
+.info-button:hover .info-icon {
+  background-color: #e68900;
+}
