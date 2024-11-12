@@ -36,7 +36,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
-    this.rol_usuario = usuario.rol_usuario; 
+    console.log('Datos de usuario obtenidos de localStorage:', usuario); // Verifica que los datos se obtienen del localStorage
+    if (usuario && usuario.tipo_usuario) {
+      this.rol_usuario = usuario.tipo_usuario;
+      console.log('Tipo de usuario:', this.rol_usuario);
+    } else {
+      console.warn('Usuario no encontrado o sin rol específico');
+    }
+    
     this.route.queryParams.subscribe(params => {
       if (params['reset'] === 'true') {
         this.resetHome();
@@ -114,6 +121,7 @@ export class HomeComponent implements OnInit {
         (this.currentPage - 1) * this.itemsPerPage,
         this.currentPage * this.itemsPerPage
       );
+      console.log('Notas paginadas:', this.paginatedNotes); // Verifica las notas que se muestran en la paginación
     } else {
       this.paginatedNotes = [];
     }
@@ -123,6 +131,7 @@ export class HomeComponent implements OnInit {
     if (this.currentPage > 1) {
       this.currentPage--;
       this.updatePagination();
+      console.log('Página actual después de retroceder:', this.currentPage); // Verifica la página actual
     }
   }
 
@@ -130,10 +139,12 @@ export class HomeComponent implements OnInit {
     if (this.currentPage * this.itemsPerPage < this.subjectNotes.length) {
       this.currentPage++;
       this.updatePagination();
+      console.log('Página actual después de avanzar:', this.currentPage); // Verifica la página actual
     }
   }
 
   selectNoteDetails(noteId: number): void {
+    console.log('Navegando a los detalles del apunte con ID:', noteId); // Verifica la navegación a detalles
     this.router.navigate(['/compra-apunte', noteId]);
   }
 
@@ -174,9 +185,9 @@ export class HomeComponent implements OnInit {
   }
 
   resetHome(): void {
+    console.log('Reseteando la vista del home'); // Confirma que se está reseteando correctamente
     this.selectedSubject = null;
     this.subjectNotes = [];
     this.paginatedNotes = [];
   }
 }
-

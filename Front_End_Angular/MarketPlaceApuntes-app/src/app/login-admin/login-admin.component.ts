@@ -12,21 +12,25 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login-admin.component.css']
 })
 export class LoginAdminComponent {
-  loginData = { legajo: '', password: '' };
+  loginData = { usuario: '', password: '' };
 
   constructor(private router: Router, private loginService: LoginService) {}
 
   validarInicio(): void {
-    this.loginService.login(this.loginData.legajo, this.loginData.password).subscribe(
+    console.log('Datos de login enviados:', this.loginData);  // Verifica los datos antes de enviarlos al servicio
+
+    this.loginService.loginAdmin(this.loginData.usuario, this.loginData.password).subscribe(
       response => {
+        console.log('Respuesta del servidor:', response);  // Verifica la respuesta exitosa del servidor
         localStorage.setItem('authToken', response.token);
-        localStorage.setItem('usuario', JSON.stringify(response.usuario));
+        localStorage.setItem('admin', JSON.stringify(response.admin));
         this.router.navigate(['/home']);
       },
       error => {
+        console.error('Error en la autenticación:', error);  // Verifica el error si ocurre
         Swal.fire({
           title: 'CREDENCIALES DE ACCESO INCORRECTAS',
-          text: "Ingresa legajo y contraseña nuevamente",
+          text: "Ingresa usuario y contraseña nuevamente",
           icon: 'warning',
           confirmButtonColor: '#3085d6',
           confirmButtonText: 'Aceptar',
