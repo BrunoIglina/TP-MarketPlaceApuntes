@@ -8,8 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { CarouselModule } from 'ngx-owl-carousel-o';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+
 
 @Component({
   selector: 'app-home',
@@ -30,28 +29,7 @@ export class HomeComponent implements OnInit {
   itemsPerPage: number = 10;
   defaultImage: string = '../../assets/AM1.jpg';
   rol_usuario: string = '';
-  customOptions: OwlOptions = {
-    loop: true,
-    margin: 10,
-    nav: true,
-    dots: true,
-    responsive: {
-      0: {
-        items: 1,
-        nav: true
-      },
-      600: {
-        items: 2,
-        nav: true
-      },
-      1000: {
-        items: 3,
-        nav: true
-      }
-    }
-  };
-  
-  
+
 
   constructor(
     private route: ActivatedRoute,
@@ -62,6 +40,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
     this.rol_usuario = usuario.rol_usuario; 
+
+    console.log('Usuario del localStorage:', usuario);
+
     this.route.queryParams.subscribe(params => {
       if (params['reset'] === 'true') {
         this.resetHome();
@@ -71,7 +52,9 @@ export class HomeComponent implements OnInit {
       }
     });
     this.getSubjects();
-    this.getAllNotes(); 
+
+    
+
   }
 
   getSubjects(): void {
@@ -131,7 +114,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  getAllNotes(): void {
+/*  getAllNotes(): void {
     this.homeService.getAllNotes().subscribe(
       (notes: any[]) => {
         const priceRequests = notes.map(note =>
@@ -156,7 +139,7 @@ export class HomeComponent implements OnInit {
         Swal.fire('Error', 'No se pudieron cargar todos los apuntes.', 'error');
       }
     );
-  }
+  }*/
 
   
 

@@ -13,4 +13,8 @@ export class LoginService {
   login(legajo: string, password: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`, { legajo, password });
   }
+
+  loginAdmin(usuario: string, password: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/login-admin`, { usuario, password });
+  }
 }
