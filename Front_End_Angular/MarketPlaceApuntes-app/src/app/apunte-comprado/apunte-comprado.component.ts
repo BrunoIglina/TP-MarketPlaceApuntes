@@ -38,9 +38,7 @@ export class ApunteCompradoComponent implements OnInit { @Input() note: any;
       });
     }
   }
- 
-  
-  
+
   
   calificarApunte(apunteId: number) {
     const dialogRef = this.dialog.open(CalificacionDialogComponent, {

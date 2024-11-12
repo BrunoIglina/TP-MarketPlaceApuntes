@@ -27,7 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class AgregarMateriaComponent implements OnInit {
   materiaForm: FormGroup;
   loading: boolean = false;
-  private readonly numero_admin: number = 1; // Constante para el número de admin
+  private readonly numero_admin: number = 1;
 
   constructor(
     private fb: FormBuilder,
@@ -48,10 +48,9 @@ export class AgregarMateriaComponent implements OnInit {
       return;
     }
 
-    // Crea un nuevo objeto que incluya numero_admin
     const nuevaMateria = {
       ...this.materiaForm.value,
-      numero_admin: this.numero_admin, // Agrega la constante aqui
+      numero_admin: this.numero_admin,
     };
 
     this.agregarMateriaService.createMateria(nuevaMateria).subscribe(

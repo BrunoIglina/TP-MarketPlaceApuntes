@@ -32,8 +32,8 @@ export class CargarApunteComponent {
   archivoCaratula: File | null = null;
   fileErrorPdf: string | null = null;
   fileErrorJpg: string | null = null;
-   numeroAlumno : number = 0;
-   materias : any[] = [];
+  numeroAlumno : number = 0;
+  materias : any[] = [];
 
   constructor(
     private fb: FormBuilder,

@@ -93,7 +93,6 @@ export class NoteDetailComponent implements OnInit {
   
 
   editarApunte() {
-    console.log('ID del apunte:', this.apunte.id_apunte); 
     this.router.navigate(['/edicionApunte', this.apunte.id_apunte]);
 }
 

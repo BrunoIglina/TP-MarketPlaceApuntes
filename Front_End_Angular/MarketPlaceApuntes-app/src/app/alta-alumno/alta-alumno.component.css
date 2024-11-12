@@ -47,7 +47,7 @@ host {
 }
 
 .input-group input {
-    width: calc(100% - 40px); /* Reduce el ancho para dejar espacio para el ícono */
+    width: calc(100% - 40px);
     padding: 10px;
     border: 1px solid #cccccc;
     border-radius: 5px;
@@ -71,17 +71,17 @@ host {
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    width: 24px; /* Tamaño del ícono */
+    width: 24px;
     height: 24px;
 }
 
 .edit-icon {
     position: absolute;
-    right: 40px; /* Ajusta esto según el espacio requerido */
+    right: 40px;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    width: 24px; /* Tamaño del ícono */
+    width: 24px;
     height: 24px;
 }
 

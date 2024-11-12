@@ -87,8 +87,6 @@ export class ProfileComponent implements OnInit {
       CVU_MP: this.cvu
     };
 
-    console.log('Datos enviados al backend:', updatedAlumno);
-
     this.profileService.updateAlumno(this.numeroAlumno, updatedAlumno).subscribe(
       response => {
         Swal.fire({

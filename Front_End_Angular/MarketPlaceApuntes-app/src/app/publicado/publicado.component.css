@@ -129,3 +129,25 @@
 .compras-text {
   font-weight: bold;
 }
+
+.info-button {
+  cursor: pointer;
+  margin-left: auto;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.info-icon {
+  width: 24px;
+  height: 24px;
+  border: 2px solid black; 
+  border-radius: 4px; 
+}
+
+.info-button:hover .info-icon {
+  background-color: #e68900;
+}
+
+
+
