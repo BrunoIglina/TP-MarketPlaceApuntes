@@ -43,7 +43,6 @@ export class ModificarMateriaComponent implements OnInit {
 
   ngOnInit() {
     this.codMateria = Number(this.route.snapshot.paramMap.get('id'));
-    console.log('Código de materia recibido:', this.codMateria); // Verificación del parámetro
   
     if (!isNaN(this.codMateria)) {
       this.modificarMateriaService.getMateriaById(this.codMateria).subscribe(

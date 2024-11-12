@@ -24,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     .dialog-title {
       font-size: 24px;
       font-weight: bold;
-      color: #3f51b5; /* Cambia el color según tu tema */
+      color: #3f51b5;
     }
 
     .dialog-content {
@@ -34,12 +34,12 @@ import { FormsModule } from '@angular/forms';
     }
 
     .form-field {
-      width: 100%; /* Ancho completo para el campo de entrada */
+      width: 100%;
     }
 
     .dialog-actions {
-      justify-content: flex-end; /* Alinear botones a la derecha */
-      margin-top: 20px; /* Espaciado entre contenido y botones */
+      justify-content: flex-end;
+      margin-top: 20px;
     }
 
     button {

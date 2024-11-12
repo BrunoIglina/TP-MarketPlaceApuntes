@@ -10,7 +10,7 @@
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Espacio entre los elementos del formulario */
+  gap: 15px;
 }
 
 .file-display-area {
@@ -23,14 +23,14 @@
 .action-buttons {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px; /* Espacio adicional entre el contenido y los botones */
+  margin-top: 20px;
 }
 
 .submit-button {
   padding: 12px 20px;
   font-size: 16px;
   border-radius: 5px;
-  background-color: #4caf50; /* Verde para guardar */
+  background-color: #4caf50;
   color: white;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
@@ -39,7 +39,7 @@
   padding: 12px 20px;
   font-size: 16px;
   border-radius: 5px;
-  background-color: #f44336; /* Rojo para cancelar */
+  background-color: #f44336;
   color: white;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
