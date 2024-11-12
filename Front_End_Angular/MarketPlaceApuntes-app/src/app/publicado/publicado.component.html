@@ -1,7 +1,12 @@
 <div class="publicado-container">
+  <button mat-button class="info-button" (click)="abrirModal()">
+    <img src="../../assets/informacion.png" alt="boton informacion" class="info-icon">
+  </button>
   <div class="notes-container">
-    <div *ngFor="let apunte of paginatedApuntes">
+    <div class="note-wrapper" *ngFor="let apunte of paginatedApuntes">
+      
       <mat-card class="note-card">
+        
         <mat-card-header>
           <mat-card-title>{{ apunte.titulo_apunte }}</mat-card-title>
           <mat-card-subtitle class="calificacion">
@@ -28,6 +33,7 @@
           <button mat-button class="ml-button" (click)="verDetalles(apunte.id_apunte)">Ver detalles</button>
         </mat-card-actions>
       </mat-card>
+      
     </div>
   </div>
   <div class="pagination-controls">

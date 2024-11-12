@@ -118,12 +118,9 @@ export class CompraApunteComponent implements OnInit {
       id_apunte: this.apunte.id_apunte
     };
   
-    console.log('Preference Data:', JSON.stringify(preferenciaData, null, 2));
-  
     this.compraService.crearPreferencia(preferenciaData).subscribe(
       (response) => {
         if (response.id) {
-          console.log('Preferencia creada con éxito:', response.id);
           this.router.navigate(['/mercado-pago'], { queryParams: { preferenceId: response.id, apunteId: this.apunte.id_apunte } });
         } else {
           console.error('No se recibió un ID de preferencia válido');
