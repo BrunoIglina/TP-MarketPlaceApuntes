@@ -1,20 +1,24 @@
 <div class="header-container">
-    <a (click)="onHomeClick()"> 
-        <img class="logo" src="assets/logo.jpg" alt="logo">
-    </a>
-    <h1 class="mainTitle" (click)="onHomeClick()"> 
-        LOS APUNTES DE BENTAN
-    </h1>
+    <div class="logo-container">
+        <a (click)="onHomeClick()"> 
+            <img class="logo" src="assets/logo.jpg" alt="logo">
+        </a>
+    </div>
+
+    <div class="title-container">
+        <h1 class="mainTitle" (click)="onHomeClick()"> 
+            LOS APUNTES DE BENTAN
+        </h1>
+    </div>
 
     <div class="dropdown-container">
+        <button *ngIf="rol_usuario === 'Administrador'" class="create-button" (click)="onCreateMateriaClick()">Crear materia</button> 
 
-        <button *ngIf="rol_usuario === 'Administrador'" class="create-button" (click)="onCreateMateriaClick()">Crear materia</button> <!-- Botón de Crear materia -->
-
-        
         <div class="dropdown">
             <button class="dropdown-button">Mi Perfil</button>
             <div class="dropdown-content miperfil-content">
-                <a routerLink="/profile">Editar Datos</a>
+                <a *ngIf="rol_usuario === 'Administrador'" routerLink="/profile-admin">Editar Datos</a> 
+                <a *ngIf="rol_usuario === 'Alumno'" routerLink="/profile">Editar Datos</a> 
                 <a (click)="onLogoutClick()">Cerrar Sesión</a>
             </div>
         </div>
@@ -28,4 +32,3 @@
         </div>
     </div>
 </div>
-
