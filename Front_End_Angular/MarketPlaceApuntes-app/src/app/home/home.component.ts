@@ -108,40 +108,12 @@ export class HomeComponent implements OnInit {
         );
       },
       (error) => {
-        console.error('Error al obtener apuntes:', error);
-        Swal.fire('Error', 'No se pudieron cargar los apuntes de la materia.', 'error');
+        console.warn('Error al obtener apuntes:', error);
+        Swal.fire('Aviso', 'No se pudieron cargar los apuntes de la materia.', 'warning');
+        this.router.navigate(['/home']);
       }
     );
   }
-
-/*  getAllNotes(): void {
-    this.homeService.getAllNotes().subscribe(
-      (notes: any[]) => {
-        const priceRequests = notes.map(note =>
-          this.homeService.getPrecioByApunteId(note.id_apunte).pipe(
-            map(precio => ({
-              ...note,
-              precio: precio?.monto_precio || 'Sin precio'
-            }))
-          )
-        );
-
-        forkJoin(priceRequests).subscribe(
-          notesWithPrice => {
-            this.allNotes = notesWithPrice;
-            console.log('Todos los apuntes:', this.allNotes);
-          },
-          error => console.error('Error al cargar los precios', error)
-        );
-      },
-      error => {
-        console.error('Error al obtener todos los apuntes:', error);
-        Swal.fire('Error', 'No se pudieron cargar todos los apuntes.', 'error');
-      }
-    );
-  }*/
-
-  
 
   updatePagination(): void {
     if (this.selectedSubject) {

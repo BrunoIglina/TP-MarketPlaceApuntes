@@ -1,9 +1,11 @@
-/* Estilo del footer */
 .footer-container {
   background-color: #333;
-  position: relative;
-  bottom: 0;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  position: relative; 
   width: 100%;
+  height: 60px; 
 }
 
 .nav-link {
@@ -38,4 +40,3 @@ body {
   display: flex;
   flex-direction: column;
 }
-

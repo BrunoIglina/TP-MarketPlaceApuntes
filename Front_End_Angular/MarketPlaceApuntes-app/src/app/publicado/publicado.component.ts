@@ -17,7 +17,7 @@ import { MatDialog, MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angu
 export class PublicadoComponent implements OnInit {
   apuntes: any[] = [];
   currentPage: number = 1;
-  itemsPerPage: number = 3; 
+  itemsPerPage: number = 5; 
   numeroAlumno: number = 0; 
   defaultImage: string = '../../assets/AM1.jpg';
   modalContent: string = ''; 
