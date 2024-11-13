@@ -19,7 +19,7 @@ export class AltaAlumnoComponent {
   email: string = '';
   telefono: string = '';
   contrasena: string = '';
-  cvu: string = ''; // Mantenerlo como string
+  cvu: string = ''; 
 
   constructor(private router: Router, private alumnoService: AltaAlumnoService) {}
 
@@ -71,7 +71,7 @@ export class AltaAlumnoComponent {
       return false;
     }
 
-    const cvuPattern = /^[0-9]{22}$/; // Patrón para 22 dígitos
+    const cvuPattern = /^[0-9]{22}$/;
     if (!cvuPattern.test(this.cvu)) {
       Swal.fire({
         title: 'CVU Inválido',
