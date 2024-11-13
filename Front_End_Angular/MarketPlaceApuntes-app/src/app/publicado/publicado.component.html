@@ -3,6 +3,19 @@
     <button mat-button class="info-button" (click)="abrirModal()">
       <img src="../../assets/informacion.png" alt="boton informacion" class="info-icon">
     </button>
+    <form [formGroup]="searchForm">
+      <mat-form-field>
+        <input type="text" matInput placeholder="Buscar por titulo" formControlName="search" [matAutocomplete]="auto">
+        <button mat-icon-button matSuffix *ngIf="searchForm.get('search')!.value" (click)="clearSearch()">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option.titulo_apunte">
+            {{ option.titulo_apunte }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
     <div class="notes-container">
       <div class="note-wrapper" *ngFor="let apunte of paginatedApuntes">
         <mat-card class="note-card">
@@ -43,3 +56,4 @@
     </div>
   </div>
 </div>
+

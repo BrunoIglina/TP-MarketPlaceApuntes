@@ -110,4 +110,7 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+  cancelar(): void {
+    this.router.navigate(['/home']);
+  }
 }

@@ -5,31 +5,69 @@ import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router'; 
 import { CalificacionDialogComponent } from './calificacion-dialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { forkJoin, Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatOptionModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-comprado',
   standalone: true,
-  imports: [CommonModule, MatCardModule, RouterModule, MatDialogModule], 
+  imports: [
+    CommonModule, 
+    MatCardModule, 
+    RouterModule, 
+    MatDialogModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatOptionModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    FormsModule
+  ], 
   templateUrl: './comprado.component.html',
   styleUrls: ['./comprado.component.css']
 })
 export class CompradoComponent implements OnInit {
   apuntes: any[] = [];
+  filteredApuntes: any[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 3; 
   numeroAlumno: number = 0; 
   defaultImage: string = '../../assets/AM1.jpg';
+  searchForm: FormGroup;
+  filteredOptions: Observable<any[]> = new Observable<any[]>(); 
 
-  constructor(private compradoService: CompradoService, private router: Router, private dialog: MatDialog) {} 
+  constructor(
+    private compradoService: CompradoService, 
+    private router: Router, 
+    private dialog: MatDialog,
+    private fb: FormBuilder
+  ) {
+    this.searchForm = this.fb.group({
+      search: ['']
+    });
+  } 
 
   ngOnInit() {
-    
     const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
     this.numeroAlumno = usuario.numero_usuario;
     this.loadComprados();
+
+    this.filteredOptions = this.searchForm.get('search')!.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+
+    this.searchForm.get('search')!.valueChanges.subscribe(value => {
+      this.filteredApuntes = this._filter(value);
+    });
   }
   
   loadComprados() {
@@ -47,6 +85,7 @@ export class CompradoComponent implements OnInit {
         forkJoin(priceRequests).subscribe(
           apuntesConPrecio => {
             this.apuntes = apuntesConPrecio;
+            this.filteredApuntes = apuntesConPrecio; 
           },
           error => console.error('Error al cargar los precios', error)
         );
@@ -58,11 +97,11 @@ export class CompradoComponent implements OnInit {
   get paginatedApuntes() {
     const start = (this.currentPage - 1) * this.itemsPerPage;
     const end = start + this.itemsPerPage;
-    return this.apuntes.slice(start, end);
+    return this.filteredApuntes.slice(start, end);
   }
   
   get totalPages() {
-    return Math.ceil(this.apuntes.length / this.itemsPerPage);
+    return Math.ceil(this.filteredApuntes.length / this.itemsPerPage);
   }
   
   changePage(page: number) {
@@ -104,5 +143,15 @@ export class CompradoComponent implements OnInit {
           });
       }
     });
+  }
+
+  private _filter(value: string): any[] {
+    const filterValue = value.toLowerCase();
+    return this.apuntes.filter(apunte => apunte.titulo_apunte.toLowerCase().includes(filterValue));
+  }
+
+  clearSearch() {
+    this.searchForm.get('search')!.setValue('');
+    this.filteredApuntes = this.apuntes;
   }
 }

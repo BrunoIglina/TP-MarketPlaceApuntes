@@ -76,4 +76,8 @@ export class ProfileAdminComponent implements OnInit {
   crearNuevoAdmin(): void {
     this.router.navigate(['/alta-admin']);
   }
+
+  cancelar(): void {
+    this.router.navigate(['/home']);
+  }
 }

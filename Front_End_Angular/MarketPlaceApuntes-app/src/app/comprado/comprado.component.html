@@ -1,4 +1,17 @@
 <div class="comprado-container">
+  <form [formGroup]="searchForm">
+    <mat-form-field>
+      <input type="text" matInput placeholder="Buscar por titulo " formControlName="search" [matAutocomplete]="auto">
+      <button mat-icon-button matSuffix *ngIf="searchForm.get('search')!.value" (click)="clearSearch()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.titulo_apunte">
+          {{ option.titulo_apunte }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
   <div *ngFor="let apunte of paginatedApuntes">
     <mat-card class="comprado-card" (click)="verDetalles(apunte.id_apunte)">
       <mat-card-header>
@@ -28,8 +41,6 @@
       </mat-card-actions>
     </mat-card>
   </div>
-
-  
   <div class="fill-space"></div>
 </div>
 
