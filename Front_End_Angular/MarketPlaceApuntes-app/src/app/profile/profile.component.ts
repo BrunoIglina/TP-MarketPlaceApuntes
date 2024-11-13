@@ -7,7 +7,7 @@ import { ProfileService } from './profile.service';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [FormsModule], // Importar FormsModule
+  imports: [FormsModule], 
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })

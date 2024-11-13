@@ -53,7 +53,6 @@ export const routes: Routes = [
   { path: 'login-admin', component: LoginAdminComponent },
   { path: 'profile-admin', component: ProfileAdminComponent },
   { path: 'alta-admin', component: AltaAdminComponent}
-  //{ path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({
