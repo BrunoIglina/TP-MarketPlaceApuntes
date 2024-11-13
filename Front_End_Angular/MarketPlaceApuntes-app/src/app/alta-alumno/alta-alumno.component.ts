@@ -19,7 +19,7 @@ export class AltaAlumnoComponent {
   email: string = '';
   telefono: string = '';
   contrasena: string = '';
-  cvu: string = '';
+  cvu: string = ''; // Mantenerlo como string
 
   constructor(private router: Router, private alumnoService: AltaAlumnoService) {}
 
@@ -32,9 +32,9 @@ export class AltaAlumnoComponent {
         email_usuario: this.email,
         telefono_usuario: this.telefono,
         contraseña_usuario: this.contrasena,
-        CVU_MP: this.cvu
+        CVU_MP: this.cvu 
       };
-
+  
       this.alumnoService.createAlumno(newAlumno).subscribe(
         () => {
           Swal.fire({
@@ -47,9 +47,10 @@ export class AltaAlumnoComponent {
           });
         },
         error => {
+          const errorMessage = error?.error?.message || 'No se pudo crear el alumno. Intenta nuevamente.';
           Swal.fire({
             title: 'Error',
-            text: error.error.message || 'No se pudo crear el alumno. Intenta nuevamente.',
+            text: errorMessage,
             icon: 'error',
             confirmButtonText: 'Aceptar',
           });
@@ -57,7 +58,7 @@ export class AltaAlumnoComponent {
       );
     }
   }
-
+  
   validateInputs(): boolean {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(this.email)) {
@@ -70,10 +71,11 @@ export class AltaAlumnoComponent {
       return false;
     }
 
-    if (this.cvu.length < 10) {
+    const cvuPattern = /^[0-9]{22}$/; // Patrón para 22 dígitos
+    if (!cvuPattern.test(this.cvu)) {
       Swal.fire({
         title: 'CVU Inválido',
-        text: 'El CVU debe tener al menos 10 números.',
+        text: 'El CVU debe tener exactamente 22 dígitos numéricos.',
         icon: 'warning',
         confirmButtonText: 'Aceptar',
       });
