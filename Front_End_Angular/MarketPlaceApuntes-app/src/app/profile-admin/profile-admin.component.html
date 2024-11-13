@@ -1,0 +1,47 @@
+<div class="profile-container">
+    <div class="profile-box">
+      <h2>Editar Datos Administrador</h2>
+      <form [formGroup]="adminForm" (ngSubmit)="guardarCambios()">
+        <div class="input-group">
+          <label for="nombre_usuario">Nombre de Usuario</label>
+          <div class="input-wrapper">
+            <input type="text" id="nombre_usuario" formControlName="nombre_usuario" readonly>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="nombre_apellido_alumno">Nombre y Apellido</label>
+          <div class="input-wrapper">
+            <input type="text" id="nombre_apellido_alumno" formControlName="nombre_apellido_alumno" [readOnly]="!editable['nombre_apellido_alumno']">
+            <img src="../../assets/edit.jpg" alt="Editar" class="edit-icon" (click)="toggleEdit('nombre_apellido_alumno')">
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="email_usuario">Email</label>
+          <div class="input-wrapper">
+            <input type="email" id="email_usuario" formControlName="email_usuario" readonly>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="telefono_usuario">Teléfono</label>
+          <div class="input-wrapper">
+            <input type="tel" id="telefono_usuario" formControlName="telefono_usuario" [readOnly]="!editable['telefono_usuario']">
+            <img src="../../assets/edit.jpg" alt="Editar" class="edit-icon" (click)="toggleEdit('telefono_usuario')">
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="rol_usuario">Rol</label>
+          <div class="input-wrapper">
+            <input type="text" id="rol_usuario" formControlName="rol_usuario" readonly>
+          </div>
+        </div>
+        <div class="button-group">
+          <button type="submit" class="save-button">Guardar Cambios</button>
+          <button type="button" class="cancel-button" routerLink="/home">Cancelar</button>
+        </div>
+        <div class="button-group">
+          <button type="button" class="create-admin-button" (click)="crearNuevoAdmin()">Crear Nuevo Administrador</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
