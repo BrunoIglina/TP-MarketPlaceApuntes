@@ -83,7 +83,7 @@ git clone https://github.com/BrunoIglina/TP-MarketPlaceApuntes.git
 1. Entra al directorio del frontend:
 
    ```bash
-   cd ../TP-MarketPlaceApuntes
+   cd ../TP-MarketPlaceApuntes\Front_End_Angular\MarketPlaceApuntes-app
    ```
 
 2. Instala las dependencias necesarias:
@@ -126,6 +126,6 @@ Para realizar la compra de un apunte, deberás iniciar sesión en MercadoPago co
 
 ## Autores
 
-- Bruno Iglina
-- Agustín Molina
-- Agustín García 
+- Bruno Iglina [BrunoIglina](https://github.com/BrunoIglina)
+- Agustín Molina [AgustinMolina028](https://github.com/AgustinMolina028)
+- Agustín García [AgustinGarcia2307](https://github.com/AgustinGarcia2307)
