@@ -63,10 +63,14 @@ git clone https://github.com/BrunoIglina/TP-MarketPlaceApuntes.git
    ```
 
 4. Creación de la base de datos:
-       Ejecutar el schema en MySQL Workbench que está en el siguiente vínculo:
-       [Esquema de la base de datos](https://github.com/BrunoIglina/TP-MarketPlaceApuntes-BackEnd/blob/main/BaseDeDatosSQL_WorkBench/marketplace_apuntes_schema.sql)
+
+      Ejecutar el schema en MySQL Workbench que está en el siguiente vínculo:
+      [Esquema de la base de datos](https://github.com/BrunoIglina/TP-MarketPlaceApuntes-BackEnd/blob/main/BaseDeDatosSQL_WorkBench/marketplace_apuntes_schema.sql)
+
+      Ejecutar el siguiente script para tener datos cargados en la base de datos:
+      [Script con datos para usar](https://github.com/BrunoIglina/TP-MarketPlaceApuntes-BackEnd/blob/main/BaseDeDatosSQL_WorkBench/DatosEjemploMarketPlaceApuntes.sql)
    
-5. Inicia el servidor backend:
+6. Inicia el servidor backend:
 
    ```bash
    node app.js
@@ -102,7 +106,7 @@ git clone https://github.com/BrunoIglina/TP-MarketPlaceApuntes.git
 
 Si todos los pasos fueron realizados correctamente, habrás llegado al inicio de sesión. 
 Para ingresar como alumno, debes registrarte. 
-Por otro lado, sólo los administradores pueden crear una cuenta de administrador, por lo cual si deseas ingresar como administrador por primera vez, deberás cargarlo en la base de datos directamente. 
+Para usar la funcionalidad de administrador, debes ingresar con uno de los administradores precargados en la base de datos.
 
 ---
 
