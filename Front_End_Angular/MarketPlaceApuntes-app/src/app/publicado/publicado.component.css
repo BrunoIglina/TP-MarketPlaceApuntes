@@ -148,3 +148,37 @@
 .info-button:hover .info-icon {
   background-color: #e68900;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.publicado-main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.publicado-container {
+  flex: 1; /* Para que el contenido principal ocupe el espacio disponible */
+}
+
+.pagination-controls, .publicar-container {
+  margin-top: 20px;
+}
+
+.publicar-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px; /* Mantén un margen inferior pequeño */
+}
+
+.note-wrapper {
+  margin-bottom: 20px; /* Ajusta este valor para más o menos espacio */
+}
+
+
+
+

@@ -52,3 +52,13 @@
         <button mat-button class="ml-button" (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= subjectNotes.length">Siguiente</button>
       </div>
     </div>
+
+    <!-- Aquí va el mensaje que quieres mostrar -->
+    <div class="message" *ngIf="!selectedSubject">
+      Si notas un apunte inapropiado, recuerda que puedes denunciarlo enviando un mail a administración. <br />
+      Mail: <a href="mailto:marketplaceapuntesa&#64;gmail.com">marketplaceapuntesa&#64;gmail.com</a>. <br />
+      Recuerda que puedes encontrar toda nuestra información en la sección Contacto.
+    </div>
+  </div>
+</div>
+

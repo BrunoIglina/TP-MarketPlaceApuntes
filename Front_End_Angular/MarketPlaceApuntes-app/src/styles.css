@@ -8,6 +8,7 @@ html, body {
   background: #ADA996;  
   background: -webkit-linear-gradient(to bottom, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);
   background: linear-gradient(to bottom, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);
+
   font-family: 'Roboto', 'Helvetica Neue', sans-serif;
 }
 
@@ -21,6 +22,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 
 footer {
   background-color: #333;

@@ -1,46 +1,46 @@
-<div class="publicado-container">
-  <button mat-button class="info-button" (click)="abrirModal()">
-    <img src="../../assets/informacion.png" alt="boton informacion" class="info-icon">
-  </button>
-  <div class="notes-container">
-    <div class="note-wrapper" *ngFor="let apunte of paginatedApuntes">
-      
-      <mat-card class="note-card">
-        
-        <mat-card-header>
-          <mat-card-title>{{ apunte.titulo_apunte }}</mat-card-title>
-          <mat-card-subtitle class="calificacion">
-            Calificación: {{ apunte.calificacion_apunte || 'Sin calificación' }}
-          </mat-card-subtitle>
-          <div class="compras-count">
-            <span class="compras-text">Compras: {{ apunte.compras }}</span>
-          </div>
-        </mat-card-header>
-        <mat-card-content>
-          <div class="card-content">
-            <img 
-              mat-card-image 
-              [src]="apunte.archivo_caratula || defaultImage" 
-              alt="{{ apunte.titulo_apunte }}" 
-              class="card-image" 
-            />
-            <div class="card-details">
-              <p class="precio-resaltado">Valor: $<strong>{{ apunte.precio }}</strong></p>
+<div class="publicado-main-container">
+  <div class="publicado-container">
+    <button mat-button class="info-button" (click)="abrirModal()">
+      <img src="../../assets/informacion.png" alt="boton informacion" class="info-icon">
+    </button>
+    <div class="notes-container">
+      <div class="note-wrapper" *ngFor="let apunte of paginatedApuntes">
+        <mat-card class="note-card">
+          <mat-card-header>
+            <mat-card-title>{{ apunte.titulo_apunte }}</mat-card-title>
+            <mat-card-subtitle class="calificacion">
+              Calificación: {{ apunte.calificacion_apunte || 'Sin calificación' }}
+            </mat-card-subtitle>
+            <div class="compras-count">
+              <span class="compras-text">Compras: {{ apunte.compras }}</span>
             </div>
-          </div>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button class="ml-button" (click)="verDetalles(apunte.id_apunte)">Ver detalles</button>
-        </mat-card-actions>
-      </mat-card>
-      
+          </mat-card-header>
+          <mat-card-content>
+            <div class="card-content">
+              <img
+                mat-card-image
+                [src]="apunte.archivo_caratula || defaultImage"
+                alt="{{ apunte.titulo_apunte }}"
+                class="card-image"
+              />
+              <div class="card-details">
+                <p class="precio-resaltado">Valor: $<strong>{{ apunte.precio }}</strong></p>
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button class="ml-button" (click)="verDetalles(apunte.id_apunte)">Ver detalles</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    <div class="pagination-controls">
+      <button mat-button class="ml-button" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Anterior</button>
+      <button mat-button class="ml-button" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Siguiente</button>
+    </div>
+    <!-- Mueve el botón de Publicar aquí -->
+    <div class="publicar-container">
+      <button mat-raised-button class="publicar-button" (click)="irACargarApunte()">Publicar Apunte</button>
     </div>
   </div>
-  <div class="pagination-controls">
-    <button mat-button class="ml-button" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Anterior</button>
-    <button mat-button class="ml-button" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Siguiente</button>
-  </div>
-</div>
-<div class="publicar-container">
-  <button mat-raised-button class="publicar-button" (click)="irACargarApunte()">Publicar Apunte</button>
 </div>
