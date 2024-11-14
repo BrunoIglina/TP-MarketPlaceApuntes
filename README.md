@@ -129,3 +129,8 @@ Para realizar la compra de un apunte, deberás iniciar sesión en MercadoPago co
 - Bruno Iglina [BrunoIglina](https://github.com/BrunoIglina)
 - Agustín Molina [AgustinMolina028](https://github.com/AgustinMolina028)
 - Agustín García [AgustinGarcia2307](https://github.com/AgustinGarcia2307)
+
+# Video Funcionamiento
+
+Link de video probando funcioamiento sitio web: [Bentan Apuntes ](https://www.youtube.com/watch?v=Pm3_ORH_wW0)
+
