@@ -1,0 +1,60 @@
+<div class="profile-container">
+  <div class="profile-box">
+    <h2>Editar Datos</h2>
+    <form (ngSubmit)="guardarCambios()">
+      <div class="input-group">
+        <label for="legajo">Legajo</label>
+        <div class="input-wrapper">
+          <input type="text" id="legajo" placeholder="Legajo" [value]="legajo" [readOnly]="!editable.legajo">
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="nombre">Nombre De Usuario</label>
+        <div class="input-wrapper">
+          <input type="text" id="nombre" placeholder="Ingresa tu nombre de usuario" [(ngModel)]="nombre" name="nombre" [readOnly]="!editable.nombre" #nombreInput required>
+          
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="apellido">Nombre y Apellido</label>
+        <div class="input-wrapper">
+          <input type="text" id="apellido" placeholder="Ingresa tu nombre y apellido" [(ngModel)]="apellido" name="apellido" [readOnly]="!editable.apellido" #apellidoInput required>
+          <img src="../../assets/edit.jpg" alt="Editar" class="edit-icon" (click)="toggleEdit('apellido', apellidoInput)">
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="mail">Mail</label>
+        <div class="input-wrapper">
+          <input type="email" id="mail" placeholder="Ingresa tu mail" [(ngModel)]="mail" name="mail" [readOnly]="!editable.mail" #mailInput required>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="telefono">Teléfono</label>
+        <div class="input-wrapper">
+          <input type="tel" id="telefono" placeholder="Ingresa tu teléfono" [(ngModel)]="telefono" name="telefono" [readOnly]="!editable.telefono" #telefonoInput required>
+          <img src="../../assets/edit.jpg" alt="Editar" class="edit-icon" (click)="toggleEdit('telefono', telefonoInput)">
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="reputacion">Reputación Estudiante</label>
+        <div class="input-wrapper">
+          <input type="text" id="reputacion" placeholder="Tu reputación" [value]="reputacionE" [readOnly]="!editable.reputacionE">
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="cvu">CVU</label>
+        <div class="input-wrapper">
+          <input type="text" id="cvu" placeholder="Ingresa tu CVU" [(ngModel)]="cvu" name="cvu" [readOnly]="!editable.cvu" #cvuInput required>
+          <img src="../../assets/edit.jpg" alt="Editar" class="edit-icon" (click)="toggleEdit('cvu', cvuInput)">
+        </div>
+      </div>
+      <div class="button-group">
+        <button type="submit" class="save-button">Guardar Cambios</button>
+        <button type="button" class="cancel-button" (click)="cancelar()">Cancelar</button>
+      </div>
+      <div class="button-group">
+        <button type="button" class="change-password-button" (click)="onChangePassword()">Cambiar Contraseña</button>
+      </div>
+    </form>
+  </div>
+</div>

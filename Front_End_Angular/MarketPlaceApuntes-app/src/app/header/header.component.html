@@ -1,0 +1,34 @@
+<div class="header-container">
+    <div class="logo-container">
+        <a (click)="onHomeClick()"> 
+            <img class="logo" src="assets/logo.jpg" alt="logo">
+        </a>
+    </div>
+
+    <div class="title-container">
+        <h1 class="mainTitle" (click)="onHomeClick()"> 
+            LOS APUNTES DE BENTAN
+        </h1>
+    </div>
+
+    <div class="dropdown-container">
+        <button *ngIf="rol_usuario === 'Administrador'" class="create-button" (click)="onCreateMateriaClick()">Crear materia</button> 
+
+        <div class="dropdown">
+            <button class="dropdown-button">Mi Perfil</button>
+            <div class="dropdown-content miperfil-content">
+                <a *ngIf="rol_usuario === 'Administrador'" routerLink="/profile-admin">Editar Datos</a> 
+                <a *ngIf="rol_usuario === 'Alumno'" routerLink="/profile">Editar Datos</a> 
+                <a class="salir" (click)="onLogoutClick()">Cerrar Sesión</a>
+            </div>
+        </div>
+        
+        <div class="dropdown">
+            <button *ngIf="rol_usuario === 'Alumno'" class="dropdown-button">Mis Apuntes</button>
+            <div class="dropdown-content">
+                <a routerLink="/comprado">Comprados</a>
+                <a routerLink="/publicado">Publicados</a>
+            </div>
+        </div>
+    </div>
+</div>

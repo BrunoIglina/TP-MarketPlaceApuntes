@@ -1,0 +1,50 @@
+<div class="comprado-container">
+  <form [formGroup]="searchForm">
+    <mat-form-field>
+      <input type="text" matInput placeholder="Buscar por titulo " formControlName="search" [matAutocomplete]="auto">
+      <button mat-icon-button matSuffix *ngIf="searchForm.get('search')!.value" (click)="clearSearch()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.titulo_apunte">
+          {{ option.titulo_apunte }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  <div *ngFor="let apunte of paginatedApuntes">
+    <mat-card class="comprado-card" (click)="verDetalles(apunte.id_apunte)">
+      <mat-card-header>
+        <mat-card-title>{{ apunte.titulo_apunte }}</mat-card-title>
+        <mat-card-subtitle class="calificacion">
+          Calificación: {{ apunte.calificacion_apunte || 'Sin calificación' }}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="card-content">
+          <img 
+            mat-card-image 
+            [src]="apunte.archivo_caratula" 
+            alt="{{ apunte.titulo_apunte }}" 
+            class="card-image" 
+            (error)="apunte.archivo_caratula = defaultImage" 
+          />
+          <div class="card-details">
+            <p>{{ apunte.descripcion_apunte || 'Sin descripción disponible' }}</p>
+            <p>Fecha de Publicación: <strong>{{ apunte.fecha_hora_publicacion | date:'longDate' }}</strong></p>
+            <p class="precio-resaltado">Valor: $<strong>{{ apunte.precio }}</strong></p>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button class="ml-button" (click)="calificar(apunte.id_apunte)">Calificar</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div class="fill-space"></div>
+</div>
+
+<div class="pagination-controls">
+  <button mat-button class="ml-button" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Anterior</button>
+  <button mat-button class="ml-button" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Siguiente</button>
+</div>

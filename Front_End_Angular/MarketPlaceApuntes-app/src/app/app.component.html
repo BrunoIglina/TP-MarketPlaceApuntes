@@ -1,0 +1,11 @@
+<ng-container *ngIf="authChecked">
+  <ng-container *ngIf="!isLoginRoute && !isAltaAlumnoRoute && !isRecoverPassRoute && !isEnterTokenRoute && !isLoginAdminRoute ">
+    <app-header *ngIf="isAuthenticated"></app-header>
+  </ng-container>
+
+  <router-outlet></router-outlet>
+
+  <ng-container *ngIf="!isLoginRoute && !isAltaAlumnoRoute && !isRecoverPassRoute && !isEnterTokenRoute && !isLoginAdminRoute ">
+    <app-footer *ngIf="isAuthenticated"></app-footer>
+  </ng-container>
+</ng-container>

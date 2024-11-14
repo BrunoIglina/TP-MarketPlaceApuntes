@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+body {
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #000000;
+}
+
+.sobre-nosotros {
+    padding: 20px;
+    text-align: center;
+    padding-top: 60px;
+}
+
+.titulo-container {
+    display: inline-block;
+    border-bottom: 2px solid #e87c6f;
+}
+
+.titulo-container h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 70px;
+    margin: 0;
+    padding: 10px;
+    font-style: italic;
+    display: inline;
+}
+
+.contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.contenido .quienes_somos, .contenido .nuestra_mision {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.contenido h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 50px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-style: italic;
+    border-bottom: 2px solid #e87c6f;
+}
+
+.contenido p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    text-align: center;
+}
+
+

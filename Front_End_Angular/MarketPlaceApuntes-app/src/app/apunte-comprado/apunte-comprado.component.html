@@ -1,0 +1,23 @@
+<div *ngIf="apunte" class="apunte-container">
+  <mat-card class="note-detail-card">
+    <mat-card-header>
+      <mat-card-title>{{ apunte.titulo_apunte }}</mat-card-title>
+      <mat-card-subtitle class="calificacion">Calificación: {{ apunte.calificacion_apunte }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="apunte.archivo_caratula" alt="{{ apunte.titulo_apunte }}" class="card-image" />
+    <mat-card-content>
+      <p><strong>Descripción:</strong> {{ apunte.descripcion_apunte }}</p>
+      <p><strong>Fecha de Publicación:</strong> {{ apunte.fecha_hora_publicacion | date }}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button (click)="calificarApunte(apunte.id_apunte)" class="ml-button">Calificar</button>
+      <button mat-button class="ml-button" (click)="visualizarApunte()">Descargar Apunte</button>
+    </mat-card-actions>
+    
+  </mat-card>
+</div>
+
+<div *ngIf="!apunte" class="loading-message">
+  <p>Cargando detalles del apunte...</p>
+</div>

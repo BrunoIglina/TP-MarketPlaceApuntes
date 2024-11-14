@@ -1,0 +1,35 @@
+<mat-card class="note-detail-card" *ngIf="!loading; else loadingTemplate">
+  <mat-card-header>
+    <mat-card-title>{{ apunte.titulo_apunte }}</mat-card-title>
+    <mat-card-subtitle class="calificacion">Calificación: {{ apunte.calificacion_apunte }}</mat-card-subtitle>
+  </mat-card-header>
+  
+  <img mat-card-image [src]="apunte.archivo_caratula" alt="{{ apunte.titulo_apunte }}" class="card-image"/>
+
+  <mat-card-content>
+    <p>{{ apunte.descripcion_apunte }}</p>
+    <p>Fecha de Publicación: {{ apunte.fecha_hora_publicacion | date }}</p>
+    <p>Precio: <span class="precio">{{ apunte.precio || 'Sin precio disponible' }}</span></p>
+  </mat-card-content>
+
+  <mat-card-actions class="action-buttons">
+    <button class="ml-button" (click)="editarApunte()">Editar</button>
+    <button class="ml-button" (click)="borrarApunte()">Borrar</button>
+    <button class="ml-button ml-button-descargar" (click)="visualizarApunte()">Descargar Apunte</button>
+    <button class="ml-button" (click)="editarPrecio()">Editar Precio</button>
+  </mat-card-actions>
+
+  <mat-form-field *ngIf="editingPrice" appearance="fill">
+    <mat-label>Nuevo Precio</mat-label>
+    <input matInput [(ngModel)]="nuevoPrecio" type="number" placeholder="Ingresa el nuevo precio" />
+  </mat-form-field>
+
+  <div class="price-actions" *ngIf="editingPrice">
+    <button class="ml-button" (click)="guardarPrecio()">Guardar Precio</button>
+    <button class="ml-button" (click)="cancelarEdicion()">Cancelar</button>
+  </div>
+</mat-card>
+
+<ng-template #loadingTemplate>
+  <div class="loading-message">Cargando el apunte...</div>
+</ng-template>

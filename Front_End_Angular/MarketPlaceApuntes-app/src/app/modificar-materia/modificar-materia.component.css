@@ -1,0 +1,87 @@
+body {
+  background-color: #ffffff;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.modificar-materia-card {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  padding-bottom: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.card-title {
+  font-size: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center; 
+  margin-top: 20px;
+  gap: 40px;
+}
+
+.submit-button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: 1px solid black;
+}
+
+.cancel-button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: #f44336;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: 1px solid black;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  color: black;
+  border: none;
+}
+
+.cancel-button:hover {
+  background-color: #d32f2f;
+  transform: translateY(-2px);
+  color: black;
+  border: none;
+}
+
+.loading-message {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+}
+
+.cod-materia {
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.cod-materia-value {
+  font-size: 20px;
+  color: black;
+  font-weight: normal;
+}
+
+.modificar-materia-container {
+  padding-bottom: 300px;
+}
