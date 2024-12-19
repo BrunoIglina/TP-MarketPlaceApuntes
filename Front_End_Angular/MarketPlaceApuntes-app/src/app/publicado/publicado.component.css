@@ -6,6 +6,7 @@
 }
 
 .publicado-card {
+  position: relative; 
   margin: 10px;
   width: 90%; 
   max-width: 400px; 
@@ -13,7 +14,6 @@
   transition: all 400ms ease;
   cursor: pointer; 
 }
-
 .publicado-card:hover {
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
 }
@@ -114,7 +114,7 @@
 
 .compras-count {
   position: absolute;
-  top: 8px;
+  bottom: 8px; 
   right: 8px;
   background-color: rgba(44, 21, 172, 0.7);
   color: white;
@@ -161,7 +161,7 @@ html, body {
 }
 
 .publicado-container {
-  flex: 1; /* Para que el contenido principal ocupe el espacio disponible */
+  flex: 1;
 }
 
 .pagination-controls, .publicar-container {
@@ -172,11 +172,11 @@ html, body {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  margin-bottom: 20px; /* Mantén un margen inferior pequeño */
+  margin-bottom: 20px; 
 }
 
 .note-wrapper {
-  margin-bottom: 20px; /* Ajusta este valor para más o menos espacio */
+  margin-bottom: 20px; 
 }
 
 

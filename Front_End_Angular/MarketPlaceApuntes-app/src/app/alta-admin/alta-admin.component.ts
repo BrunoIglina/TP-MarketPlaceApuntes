@@ -29,7 +29,7 @@ export class AltaAdminComponent {
         email_usuario: this.email,
         telefono_usuario: this.telefono,
         contraseña_usuario: this.contrasena,
-        rol_usuario: 'Administrador' // Rol fijo para administrador
+        rol_usuario: 'Administrador' 
       };
 
       this.adminService.createAdmin(newAdmin).subscribe(

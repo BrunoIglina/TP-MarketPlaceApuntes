@@ -3,8 +3,19 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  min-height: calc(100vh - 100px); 
+  padding-bottom: 20px; 
+  box-sizing: border-box;
 }
-
+.fill-space {
+  flex-grow: 1;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
 .comprado-card {
   margin: 10px;
   width: 90%; 
@@ -85,3 +96,4 @@
   color: #a0a0a0; 
   cursor: not-allowed; 
 }
+

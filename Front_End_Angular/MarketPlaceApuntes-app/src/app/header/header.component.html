@@ -19,7 +19,7 @@
             <div class="dropdown-content miperfil-content">
                 <a *ngIf="rol_usuario === 'Administrador'" routerLink="/profile-admin">Editar Datos</a> 
                 <a *ngIf="rol_usuario === 'Alumno'" routerLink="/profile">Editar Datos</a> 
-                <a (click)="onLogoutClick()">Cerrar Sesión</a>
+                <a class="salir" (click)="onLogoutClick()">Cerrar Sesión</a>
             </div>
         </div>
         

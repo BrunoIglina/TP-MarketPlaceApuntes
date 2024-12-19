@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   paginatedNotes: any[] = [];
   allNotes: any[] = [];
   currentPage: number = 1;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 5;
   defaultImage: string = '../../assets/AM1.jpg';
   rol_usuario: string = '';
 
