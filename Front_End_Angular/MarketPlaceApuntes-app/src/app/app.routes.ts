@@ -22,6 +22,8 @@ import { MercadoPagoComponent } from './mercado-pago/mercado-pago.component';
 import { AltaAlumnoComponent } from './alta-alumno/alta-alumno.component';
 import { AuthGuard } from './auth.guard';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
+import { ProfileAdminComponent } from './profile-admin/profile-admin.component';
+import { AltaAdminComponent } from './alta-admin/alta-admin.component';
 
 
 export const routes: Routes = [
@@ -49,7 +51,8 @@ export const routes: Routes = [
   { path: 'mercado-pago', component: MercadoPagoComponent, canActivate: [AuthGuard]},
   { path: 'alta-alumno', component: AltaAlumnoComponent},
   { path: 'login-admin', component: LoginAdminComponent },
-  //{ path: '**', redirectTo: 'home' },
+  { path: 'profile-admin', component: ProfileAdminComponent },
+  { path: 'alta-admin', component: AltaAdminComponent}
 ];
 
 @NgModule({

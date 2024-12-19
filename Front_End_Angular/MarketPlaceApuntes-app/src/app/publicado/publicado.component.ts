@@ -3,31 +3,70 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card'; 
 import { Router, RouterModule } from '@angular/router'; 
 import { PublicadoService } from './publicado.service';
-import { forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { forkJoin, Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { MatDialog, MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatOptionModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-publicado',
   standalone: true,
-  imports: [CommonModule, MatCardModule, RouterModule, MatDialogModule], 
+  imports: [
+    CommonModule, 
+    MatCardModule, 
+    RouterModule, 
+    MatDialogModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatOptionModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    FormsModule
+  ], 
   templateUrl: './publicado.component.html',
   styleUrls: ['./publicado.component.css']
 })
 export class PublicadoComponent implements OnInit {
   apuntes: any[] = [];
+  filteredApuntes: any[] = [];
   currentPage: number = 1;
-  itemsPerPage: number = 3; 
+  itemsPerPage: number = 5; 
   numeroAlumno: number = 0; 
   defaultImage: string = '../../assets/AM1.jpg';
   modalContent: string = ''; 
+  searchForm: FormGroup;
+  filteredOptions: Observable<any[]> = new Observable<any[]>(); 
 
-  constructor(private publicadoService: PublicadoService, private router: Router, public dialog: MatDialog) {} 
+  constructor(
+    private publicadoService: PublicadoService, 
+    private router: Router, 
+    public dialog: MatDialog,
+    private fb: FormBuilder
+  ) {
+    this.searchForm = this.fb.group({
+      search: ['']
+    });
+  } 
 
   ngOnInit() {
     const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
     this.numeroAlumno = usuario.numero_usuario;
     this.loadComprados();
+
+    this.filteredOptions = this.searchForm.get('search')!.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+
+    this.searchForm.get('search')!.valueChanges.subscribe(value => {
+      this.filteredApuntes = this._filter(value);
+    });
   }
   
   loadComprados() {
@@ -49,6 +88,7 @@ export class PublicadoComponent implements OnInit {
         forkJoin(requests).subscribe(
           apuntesConDatos => {
             this.apuntes = apuntesConDatos;
+            this.filteredApuntes = apuntesConDatos; 
           },
           error => console.error('Error al cargar los datos', error)
         );
@@ -60,11 +100,11 @@ export class PublicadoComponent implements OnInit {
   get paginatedApuntes() {
     const start = (this.currentPage - 1) * this.itemsPerPage;
     const end = start + this.itemsPerPage;
-    return this.apuntes.slice(start, end);
+    return this.filteredApuntes.slice(start, end);
   }
   
   get totalPages() {
-    return Math.ceil(this.apuntes.length / this.itemsPerPage);
+    return Math.ceil(this.filteredApuntes.length / this.itemsPerPage);
   }
   
   changePage(page: number) {
@@ -87,6 +127,16 @@ export class PublicadoComponent implements OnInit {
     this.dialog.open(DialogContentExampleDialog, {
       data: { content: this.modalContent }
     });
+  }
+
+  private _filter(value: string): any[] {
+    const filterValue = value.toLowerCase();
+    return this.apuntes.filter(apunte => apunte.titulo_apunte.toLowerCase().includes(filterValue));
+  }
+
+  clearSearch() {
+    this.searchForm.get('search')!.setValue('');
+    this.filteredApuntes = this.apuntes;
   }
 }
 

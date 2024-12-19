@@ -21,7 +21,8 @@ export class AppComponent implements OnInit {
   isAltaAlumnoRoute: boolean = false;
   isRecoverPassRoute: boolean = false;
   isEnterTokenRoute: boolean = false;
-  isResetPasswordRoute: boolean = false
+  isResetPasswordRoute: boolean = false;
+  isLoginAdminRoute: boolean = false;
 
   constructor(private router: Router) {}
 
@@ -34,6 +35,7 @@ export class AppComponent implements OnInit {
         this.isAltaAlumnoRoute = this.router.url === '/alta-alumno';
         this.isRecoverPassRoute = this.router.url === '/recover-pass';
         this.isEnterTokenRoute = this.router.url === '/enter-token';
+        this.isLoginAdminRoute = this.router.url === '/login-admin';
         this.updateAuthStatus();
       }
     });

@@ -27,7 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class AgregarMateriaComponent implements OnInit {
   materiaForm: FormGroup;
   loading: boolean = false;
-  private readonly numero_admin: number = 1;
+  numero_usuario: number | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -40,7 +40,10 @@ export class AgregarMateriaComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    this.numero_usuario = usuario.numero_usuario || null;
+  }
 
   onSubmit() {
     if (this.materiaForm.invalid) {
@@ -50,7 +53,7 @@ export class AgregarMateriaComponent implements OnInit {
 
     const nuevaMateria = {
       ...this.materiaForm.value,
-      numero_admin: this.numero_admin,
+      numero_admin: this.numero_usuario,
     };
 
     this.agregarMateriaService.createMateria(nuevaMateria).subscribe(
@@ -69,5 +72,3 @@ export class AgregarMateriaComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 }
-
-

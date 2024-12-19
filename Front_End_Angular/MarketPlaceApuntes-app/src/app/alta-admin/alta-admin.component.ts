@@ -3,54 +3,50 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { AltaAlumnoService } from './alumno.service';
+import { AltaAdminService } from './alta-admin.service';
 
 @Component({
-  selector: 'app-alta-alumno',
+  selector: 'app-alta-admin',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
-  templateUrl: './alta-alumno.component.html',
-  styleUrls: ['./alta-alumno.component.css']
+  templateUrl: './alta-admin.component.html',
+  styleUrls: ['./alta-admin.component.css']
 })
-export class AltaAlumnoComponent {
-  legajo: string = '';
+export class AltaAdminComponent {
   nombreUsuario: string = '';
   nombreApellido: string = '';
   email: string = '';
   telefono: string = '';
   contrasena: string = '';
-  cvu: string = ''; 
 
-  constructor(private router: Router, private alumnoService: AltaAlumnoService) {}
+  constructor(private router: Router, private adminService: AltaAdminService) {}
 
   onSubmit(): void {
     if (this.validateInputs()) {
-      const newAlumno = {
-        legajo_usuario: this.legajo,
+      const newAdmin = {
         nombre_usuario: this.nombreUsuario,
         nombre_apellido_alumno: this.nombreApellido,
         email_usuario: this.email,
         telefono_usuario: this.telefono,
         contraseña_usuario: this.contrasena,
-        CVU_MP: this.cvu 
+        rol_usuario: 'Administrador' 
       };
-  
-      this.alumnoService.createAlumno(newAlumno).subscribe(
+
+      this.adminService.createAdmin(newAdmin).subscribe(
         () => {
           Swal.fire({
-            title: 'Alumno Creado',
-            text: 'El alumno ha sido creado exitosamente.',
+            title: 'Administrador Creado',
+            text: 'El administrador ha sido creado exitosamente.',
             icon: 'success',
             confirmButtonText: 'Aceptar',
           }).then(() => {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/home']);
           });
         },
         error => {
-          const errorMessage = error?.error?.message || 'No se pudo crear el alumno. Intenta nuevamente.';
           Swal.fire({
             title: 'Error',
-            text: errorMessage,
+            text: error.error.message || 'No se pudo crear el administrador. Intenta nuevamente.',
             icon: 'error',
             confirmButtonText: 'Aceptar',
           });
@@ -58,24 +54,13 @@ export class AltaAlumnoComponent {
       );
     }
   }
-  
+
   validateInputs(): boolean {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(this.email)) {
       Swal.fire({
         title: 'Correo Inválido',
         text: 'Por favor, ingresa un correo electrónico válido.',
-        icon: 'warning',
-        confirmButtonText: 'Aceptar',
-      });
-      return false;
-    }
-
-    const cvuPattern = /^[0-9]{22}$/;
-    if (!cvuPattern.test(this.cvu)) {
-      Swal.fire({
-        title: 'CVU Inválido',
-        text: 'El CVU debe tener exactamente 22 dígitos numéricos.',
         icon: 'warning',
         confirmButtonText: 'Aceptar',
       });

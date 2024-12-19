@@ -6,6 +6,7 @@
 }
 
 .publicado-card {
+  position: relative; 
   margin: 10px;
   width: 90%; 
   max-width: 400px; 
@@ -13,7 +14,6 @@
   transition: all 400ms ease;
   cursor: pointer; 
 }
-
 .publicado-card:hover {
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
 }
@@ -114,7 +114,7 @@
 
 .compras-count {
   position: absolute;
-  top: 8px;
+  bottom: 8px; 
   right: 8px;
   background-color: rgba(44, 21, 172, 0.7);
   color: white;
@@ -148,6 +148,37 @@
 .info-button:hover .info-icon {
   background-color: #e68900;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.publicado-main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.publicado-container {
+  flex: 1;
+}
+
+.pagination-controls, .publicar-container {
+  margin-top: 20px;
+}
+
+.publicar-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px; 
+}
+
+.note-wrapper {
+  margin-bottom: 20px; 
+}
+
 
 
 

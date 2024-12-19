@@ -15,7 +15,7 @@ import { map } from 'rxjs/operators';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   standalone: true,
-  imports: [HttpClientModule, CommonModule, FormsModule, MatCardModule, CarouselModule]
+  imports: [HttpClientModule, CommonModule, FormsModule, MatCardModule]
 })
 export class HomeComponent implements OnInit {
   years: number[] = [1, 2, 3, 4, 5];
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   paginatedNotes: any[] = [];
   allNotes: any[] = [];
   currentPage: number = 1;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 5;
   defaultImage: string = '../../assets/AM1.jpg';
   rol_usuario: string = '';
 
@@ -41,8 +41,6 @@ export class HomeComponent implements OnInit {
     const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
     this.rol_usuario = usuario.rol_usuario; 
 
-    console.log('Usuario del localStorage:', usuario);
-
     this.route.queryParams.subscribe(params => {
       if (params['reset'] === 'true') {
         this.resetHome();
@@ -52,8 +50,6 @@ export class HomeComponent implements OnInit {
       }
     });
     this.getSubjects();
-
-    
 
   }
 
@@ -108,40 +104,12 @@ export class HomeComponent implements OnInit {
         );
       },
       (error) => {
-        console.error('Error al obtener apuntes:', error);
-        Swal.fire('Error', 'No se pudieron cargar los apuntes de la materia.', 'error');
+        console.warn('Error al obtener apuntes:', error);
+        Swal.fire('Aviso', 'No se pudieron cargar los apuntes de la materia.', 'warning');
+        this.router.navigate(['/home']);
       }
     );
   }
-
-/*  getAllNotes(): void {
-    this.homeService.getAllNotes().subscribe(
-      (notes: any[]) => {
-        const priceRequests = notes.map(note =>
-          this.homeService.getPrecioByApunteId(note.id_apunte).pipe(
-            map(precio => ({
-              ...note,
-              precio: precio?.monto_precio || 'Sin precio'
-            }))
-          )
-        );
-
-        forkJoin(priceRequests).subscribe(
-          notesWithPrice => {
-            this.allNotes = notesWithPrice;
-            console.log('Todos los apuntes:', this.allNotes);
-          },
-          error => console.error('Error al cargar los precios', error)
-        );
-      },
-      error => {
-        console.error('Error al obtener todos los apuntes:', error);
-        Swal.fire('Error', 'No se pudieron cargar todos los apuntes.', 'error');
-      }
-    );
-  }*/
-
-  
 
   updatePagination(): void {
     if (this.selectedSubject) {
