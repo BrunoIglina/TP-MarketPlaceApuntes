@@ -23,6 +23,7 @@ export class NoteDetailComponent implements OnInit {
   loading: boolean = true; 
   editingPrice: boolean = false;
   nuevoPrecio: number | null = null;
+  estado_apunte: string = '';
 
   constructor(
     private noteDetailService: NoteDetailService, 
@@ -38,6 +39,7 @@ export class NoteDetailComponent implements OnInit {
     if (this.note) {
       this.apunte = this.note;
       this.loading = false; 
+      this.verificarEstadoApunte();
     } else {
       const apunteIdString = this.route.snapshot.paramMap.get('id');
       
@@ -76,6 +78,7 @@ export class NoteDetailComponent implements OnInit {
           this.apunte = apunte;
           this.apunte.precio = precio?.monto_precio || 'Sin precio disponible';
           this.loading = false;
+          this.verificarEstadoApunte();
         },
         error: (err) => {
           console.error('Error al cargar el apunte o el precio:', err);
@@ -197,4 +200,28 @@ export class NoteDetailComponent implements OnInit {
     } else {
       Swal.fire('Precio inválido', 'Por favor, ingresa un precio válido.', 'warning');
     }
-  }}
+  }
+
+  verificarEstadoApunte() {
+    if (this.apunte.estado_apunte === 'N') {
+      Swal.fire({
+        title: 'Apunte dado de baja',
+        text: 'No puedes ver el detalle porque el apunte está dado de baja.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Descargar Apunte',
+        cancelButtonText: 'Volver',
+        cancelButtonColor: '#d33',
+        confirmButtonColor: '#3085d6',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.visualizarApunte(); 
+        } else {
+          this.router.navigate(['/publicado']); 
+        }
+      });
+    }
+  }
+  
+
+}

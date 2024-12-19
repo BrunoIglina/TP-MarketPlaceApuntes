@@ -37,8 +37,11 @@
         </div>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button class="ml-button" (click)="calificar(apunte.id_apunte)">Calificar</button>
+        <button mat-button class="ml-button" (click)="calificar(apunte.id_apunte); $event.stopPropagation()">
+          Calificar
+        </button>
       </mat-card-actions>
+      
     </mat-card>
   </div>
   <div class="fill-space"></div>

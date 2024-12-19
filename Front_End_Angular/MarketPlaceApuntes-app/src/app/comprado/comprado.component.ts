@@ -123,27 +123,32 @@ export class CompradoComponent implements OnInit {
     dialogRef.afterClosed().subscribe((calificacion: number | null) => {
       if (calificacion !== null) {
         this.compradoService.calificarApunte(this.numeroAlumno, apunteId, calificacion)
-          .subscribe(response => {
-            Swal.fire({
-              icon: 'success',
-              title: '¡Calificación guardada!',
-              text: 'La calificación se ha aplicado correctamente.',
-              confirmButtonText: 'Aceptar'
-            }).then(() => {
-              this.loadComprados(); 
-            });
-          }, error => {
-            console.error('Error al guardar la calificación:', error);
-            Swal.fire({
-              icon: 'error',
-              title: 'Error al guardar la calificación',
-              text: 'No se pudo guardar la calificación. Intente nuevamente.',
-              confirmButtonText: 'Aceptar'
-            });
-          });
+          .subscribe(
+            response => {
+              Swal.fire({
+                icon: 'success',
+                title: '¡Calificación guardada!',
+                text: 'La calificación se ha aplicado correctamente.',
+                confirmButtonText: 'Aceptar'
+              }).then(() => {
+                
+                this.loadComprados();
+              });
+            },
+            error => {
+              console.error('Error al guardar la calificación:', error);
+              Swal.fire({
+                icon: 'error',
+                title: 'Error al guardar la calificación',
+                text: 'No se pudo guardar la calificación. Intente nuevamente.',
+                confirmButtonText: 'Aceptar'
+              });
+            }
+          );
       }
     });
   }
+  
 
   private _filter(value: string): any[] {
     const filterValue = value.toLowerCase();

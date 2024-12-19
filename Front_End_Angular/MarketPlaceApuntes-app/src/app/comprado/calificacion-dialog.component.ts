@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
     </div>
     <div mat-dialog-actions class="dialog-actions">
       <button mat-button color="warn" (click)="onCancel()">Cancelar</button>
-      <button mat-button color="primary" (click)="onConfirm()">Confirmar</button>
+      <button mat-button color="primary" [disabled]="!isValidCalificacion()" (click)="onConfirm()">Confirmar</button>
     </div>
   `,
   styles: [`
@@ -50,18 +50,25 @@ import { FormsModule } from '@angular/forms';
   imports: [MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule] 
 })
 export class CalificacionDialogComponent {
-  calificacion: number = 0;
+  calificacion: number | null = null;
 
   constructor(
     public dialogRef: MatDialogRef<CalificacionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { apunteId: number }
   ) {}
 
+  
   onConfirm(): void {
     this.dialogRef.close(this.calificacion);
   }
 
+  
   onCancel(): void {
     this.dialogRef.close(null);
+  }
+
+  
+  isValidCalificacion(): boolean {
+    return this.calificacion !== null && this.calificacion >= 1 && this.calificacion <= 10;
   }
 }

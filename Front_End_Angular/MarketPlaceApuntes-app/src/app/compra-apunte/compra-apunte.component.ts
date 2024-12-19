@@ -22,6 +22,8 @@ export class CompraApunteComponent implements OnInit {
   rol_usuario: string = '';
   @Input() noteId!: number; 
   private readonly numeroAdmin: number = 1;
+  estado_apunte: string = '';
+  estado_materia: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -65,6 +67,33 @@ export class CompraApunteComponent implements OnInit {
   }
 
   comprar(): void {
+    if (this.numero_alumno === this.apunte.numero_alumno) {
+      Swal.fire({
+        title: 'Error',
+        text: 'No puedes comprar tu propio apunte.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      return;
+    }
+    if (this.apunte.estado_apunte === 'N' ) {
+      Swal.fire({
+        title: 'Error',
+        text: 'No puedes comprar un apunte deshabilitado',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      return;
+    }
+   /* if ( this.apunte.materia.estado_materia === 'N') {
+      Swal.fire({
+        title: 'Error',
+        text: 'No puedes comprar un apunte de una materia deshabilitada',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      return;
+    }*/
     if (this.numero_alumno === this.apunte.numero_alumno) {
       Swal.fire({
         title: 'Error',

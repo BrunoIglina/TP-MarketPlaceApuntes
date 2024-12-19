@@ -19,6 +19,7 @@ export class ApunteCompradoComponent implements OnInit { @Input() note: any;
   apunte: any;
   numero_alumno: number = 0; 
   dialog: MatDialog;
+  estado_apunte: string = '';
   constructor(private noteDetailService: ApunteService, private route: ActivatedRoute, private router: Router, dialog: MatDialog) {this.dialog = dialog;}
 
   ngOnInit() {
@@ -29,15 +30,19 @@ export class ApunteCompradoComponent implements OnInit { @Input() note: any;
 
   loadApunte() {
     if (this.note) {
-      
       this.apunte = this.note;
+      console.log('Apunte cargado:', this.apunte); 
+      this.verificarEstadoApunte();
     } else {
       const apunteId = this.route.snapshot.paramMap.get('id');
       this.noteDetailService.getApunteById(apunteId).subscribe((data) => {
         this.apunte = data;
+        console.log('Apunte desde servicio:', this.apunte); 
+        this.verificarEstadoApunte();
       });
     }
   }
+  
 
   
   calificarApunte(apunteId: number) {
@@ -97,6 +102,28 @@ export class ApunteCompradoComponent implements OnInit { @Input() note: any;
         text: 'No hay un archivo de apunte disponible para descargar.',
         icon: 'error',
         confirmButtonText: 'Aceptar'
+      });
+    }
+  }
+
+verificarEstadoApunte() {
+    if (this.apunte.estado_apunte === 'N') {
+      Swal.fire({
+        title: 'Apunte dado de baja',
+        text: 'No puedes ver el detalle porque el apunte está dado de baja.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Descargar Apunte',
+        cancelButtonText: 'Volver',
+        cancelButtonColor: '#d33',
+        confirmButtonColor: '#3085d6',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.visualizarApunte();
+          this.router.navigate(['/comprado']); 
+        } else {
+          this.router.navigate(['/comprado']); 
+        }
       });
     }
   }
