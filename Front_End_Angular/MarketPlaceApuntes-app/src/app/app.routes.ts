@@ -24,6 +24,8 @@ import { AuthGuard } from './auth.guard';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { ProfileAdminComponent } from './profile-admin/profile-admin.component';
 import { AltaAdminComponent } from './alta-admin/alta-admin.component';
+import { BajasApuntesComponent } from './bajas-apuntes/bajas-apuntes.component';
+import { BajasMateriasComponent } from './bajas-materias/bajas-materias.component';
 
 
 export const routes: Routes = [
@@ -52,7 +54,10 @@ export const routes: Routes = [
   { path: 'alta-alumno', component: AltaAlumnoComponent},
   { path: 'login-admin', component: LoginAdminComponent },
   { path: 'profile-admin', component: ProfileAdminComponent },
-  { path: 'alta-admin', component: AltaAdminComponent}
+  { path: 'alta-admin', component: AltaAdminComponent},
+  { path: 'bajas-apuntes', component: BajasApuntesComponent, canActivate: [AuthGuard] },
+  { path: 'bajas-materias', component: BajasMateriasComponent, canActivate: [AuthGuard] }
+  
 ];
 
 @NgModule({
