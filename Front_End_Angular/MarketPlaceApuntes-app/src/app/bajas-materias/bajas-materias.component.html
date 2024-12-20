@@ -1,1 +1,41 @@
-<p>bajas-materias works!</p>
+<div class="container">
+    <h2>Materias dadas de baja</h2>
+  
+    <div *ngIf="loading" class="loading">
+      Cargando datos...
+    </div>
+  
+    <table class="bajas-table" *ngIf="!loading && bajasMaterias.length > 0; else noData">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre Materia</th>
+          <th>Nivel Carrera</th>
+          <th>Fecha Hora Publicacion</th>
+          <th>Numero Admin Publicacion</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let materia of bajasMaterias">
+          <td>{{ materia.cod_materia }}</td>
+          <td>{{ materia.nombre_materia }}</td>
+          <td>{{ materia.nivel_carrera }}</td>
+          <td>{{ materia.fecha_hora_alta_materia }}</td>
+          <td>{{ materia.numero_admin}}</td>
+          <td>
+            <button (click)="restoreMateria(materia.cod_materia)" class="restore-button">
+              Alta
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <ng-template #noData>
+      <div class="no-data">
+        No hay materias dadas de baja.
+      </div>
+    </ng-template>
+  </div>
+  

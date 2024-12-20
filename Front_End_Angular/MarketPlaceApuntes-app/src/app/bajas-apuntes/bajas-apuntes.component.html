@@ -1,1 +1,41 @@
-<p>bajas-apuntes works!</p>
+<div class="container">
+    <h2>Apuntes dados de baja</h2>
+  
+    <div *ngIf="loading" class="loading">
+      Cargando datos...
+    </div>
+  
+    <table class="bajas-table" *ngIf="!loading && bajasApuntes.length > 0; else noData">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Descripción</th>
+          <th>Calificación</th>
+          <th>Fecha de Publicación</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let apunte of bajasApuntes">
+          <td>{{ apunte.id_apunte }}</td>
+          <td>{{ apunte.titulo_apunte }}</td>
+          <td>{{ apunte.descripcion_apunte }}</td>
+          <td>{{ apunte.calificacion_apunte }}</td>
+          <td>{{ apunte.fecha_hora_publicacion }}</td>
+          <td>
+            <button (click)="restoreApunte(apunte.id_apunte)" class="restore-button">
+              Alta
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <ng-template #noData>
+      <div class="no-data">
+        No hay apuntes dados de baja.
+      </div>
+    </ng-template>
+  </div>
+  
