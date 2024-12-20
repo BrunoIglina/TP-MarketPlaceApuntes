@@ -1,0 +1,58 @@
+.container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 18px;
+    color: #007bff;
+  }
+  
+  .no-data {
+    text-align: center;
+    font-size: 16px;
+    color: #6c757d;
+  }
+  
+  .bajas-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+  
+  .bajas-table thead {
+    background-color: #f4f4f4;
+  }
+  
+  .bajas-table th,
+  .bajas-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .bajas-table th {
+    background-color: #007BFF;
+    color: white;
+  }
+  
+  .restore-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .restore-button:hover {
+    background-color: #218838;
+  }
+  
